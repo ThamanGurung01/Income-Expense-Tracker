@@ -3,14 +3,12 @@
 const express=require("express");
 require("dotenv").config();
 
-
-
 //files
 const connectToDb=require("./db/connectToDb");
 const dbUrl=process.env.DB_URL;
 
 const expense= require("./routes/expense");
-
+const income=require("./routes/income");
 //imports ends
 
 
@@ -31,7 +29,7 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/expense",expense);
-
+app.use("/income",income)
 
 
 app.listen(PORT,()=>{console.log("SERVER STARTED")});
