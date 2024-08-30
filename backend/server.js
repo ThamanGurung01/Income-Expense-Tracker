@@ -6,6 +6,9 @@ require("dotenv").config();
 
 
 //files
+const connectToDb=require("./db/connectToDb");
+const dbUrl=process.env.DB_URL;
+
 const expense= require("./routes/expense");
 
 //imports ends
@@ -13,6 +16,10 @@ const expense= require("./routes/expense");
 
 const app=express();
 const PORT=process.env.PORT
+
+
+//connection to db
+connectToDb(dbUrl);
 
 //middlewares
 app.use(express.urlencoded({extended:true}));
