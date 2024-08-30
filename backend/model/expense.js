@@ -1,6 +1,6 @@
 const mongoose=require("mongoose");
 const expenseSchema=mongoose.Schema({
-  expense_title:{
+  expense_amount:{
     type:String,
     required:true,
   },
@@ -12,7 +12,7 @@ const expenseSchema=mongoose.Schema({
     type:String,
   },
   expense_date:{
-    type:Date,
+    type:String,
     required:true,
   },
 },{timestamps:true});
