@@ -5,7 +5,7 @@ const Income = () => {
   return (
     <div className='sidebar-option'>
       <span>Income</span>
-      <Forms/>
+      <Forms value={"income"} method={"POST"}/>
     </div>
   )
 }
