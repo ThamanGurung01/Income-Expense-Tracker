@@ -1,9 +1,10 @@
 import React from 'react'
 import { BasicProps } from './components-types'
 
+const post_url=import.meta.env.VITE_BACKEND_URL;
 const Forms:React.FC<BasicProps> = ({value,method}) => {
   return (
-    <form action={`/${value}`} method={method}>
+    <form action={`${post_url+value}`} method={method}>
       <input type="number" name={`${value}_amount`} min={1} required/><br />
 
       <select name={`${value}_category`} id="" required>
