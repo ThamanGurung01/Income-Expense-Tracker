@@ -1,8 +1,12 @@
 import React from 'react'
+import Forms from '../components/Forms'
 
 const Income = () => {
   return (
-    <div className='sidebar-option'>Income</div>
+    <div className='sidebar-option'>
+      <span>Income</span>
+      <Forms/>
+    </div>
   )
 }
 
