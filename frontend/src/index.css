@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  user-select: none;
+  -webkit-user-drag: none;
+}
 .sidebar-option{
   @apply border-4 w-screen min-h-screen;
 }

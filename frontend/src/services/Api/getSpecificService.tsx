@@ -1,8 +1,8 @@
 const post_url=import.meta.env.VITE_BACKEND_URL;
-
-export const getService=async(value:string)=>{
+export const getSpecificService=async(value:string,id:string)=>{
   try{
-    const response=await fetch(post_url+value,{
+    const getRequest=post_url+value+"/"+id;
+    const response=await fetch(getRequest,{
       method:"GET",
     }); 
     return await response.json();

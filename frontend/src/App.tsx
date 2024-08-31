@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import Income from "./pages/Income"
 import Expense from "./pages/Expense"
 import View from "./pages/View"
+import UpdatePage from "./pages/updatePage"
 function App() {
   const options=["home","income","expense"];
   
@@ -16,6 +17,7 @@ function App() {
       <Route path="/income" element={<Income/>}/>
       <Route path="/expense" element={<Expense/>}/>
       <Route path="/view" element={<View/>}/>
+      <Route path="/update/:id/:value" element={<UpdatePage/>}/>
     </Routes>
     </div>
   )

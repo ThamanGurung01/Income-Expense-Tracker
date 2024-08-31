@@ -3,6 +3,7 @@ import React, { useState,useEffect } from 'react'
 import { getService } from '../services/Api/getService';
 import { viewTableProps } from './components-types';
 import { capitalizeFirstLetter } from '../utils/stringUtils';
+import { Link } from 'react-router-dom';
 const ViewTable:React.FC<viewTableProps> = ({value}) => {
   const [viewData,setViewData]=useState<Array<{[key:string]:string}>>([]);
   const capitalizedValue=capitalizeFirstLetter(value);
@@ -29,6 +30,7 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
 <th>Amount</th>
       <th>Category</th>
       <th>Date</th>
+      <th>Action</th>
 </tr>
     </thead>
     <tbody>
@@ -36,6 +38,7 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
 <td>{el[value+"_amount"]}</td>
 <td>{el[value+"_category"]}</td>
 <td>{el[value+"_date"]}</td>
+<td> <Link to={"/update/"+el["_id"]+"/"+value}>Update</Link> <button>Delete</button></td>
 </tr>
  )}
     </tbody>

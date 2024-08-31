@@ -1,6 +1,7 @@
 //form
 export interface FormProps{
-  value:string,
+  value?:string,
+  id?:string,
   method:string,
 }
 export interface viewTableProps{

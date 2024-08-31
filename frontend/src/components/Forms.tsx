@@ -1,8 +1,8 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { FormProps } from './components-types'
 import { postService } from '../services/Api/postService';
-
-const Forms:React.FC<FormProps> = ({value,method}) => {
+import {getSpecificService} from "../services/Api/getSpecificService"
+const Forms:React.FC<FormProps> = ({value,method,id}) => {
   const [amount,setAmount]=useState<Number>(1000);
   const [category,setCategory]=useState<string>("Salary");
   const [descriptions,setDescriptions]=useState<string>("");
@@ -10,6 +10,20 @@ const Forms:React.FC<FormProps> = ({value,method}) => {
   const [message,setMessage]=useState<{msg:string,error:string}>({msg:"",
     error:"",
   });
+  async function getRequest(id:string,value:string){
+    try{
+      const data= await getSpecificService(value,id);
+      console.log(data);
+    }catch(error){
+      console.log("error");
+    }
+  } 
+  useEffect(()=>{
+    if(id){
+      getRequest(id,value?value:"");
+    }
+  },[id]);
+
   const handleAmount=(e:React.ChangeEvent<HTMLInputElement>)=>{
     if(Number(e.target.value)>=1000){
       setAmount(Number(e.target.value));
