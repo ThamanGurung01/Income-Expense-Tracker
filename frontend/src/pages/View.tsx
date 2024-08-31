@@ -1,9 +1,19 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
+import ViewTable from '../components/viewTable'
 
-const View = () => {
+const View:React.FC = () => {
+
+
   return (
     <div className='sidebar-option'>
       <span>View</span>
+      <div>
+        <ViewTable value="income"/>
+      </div>
+      <div>
+      <ViewTable value="expense"/>
+        
+      </div>
     </div>
   )
 }

@@ -1,5 +1,8 @@
 //form
-export interface BasicProps{
+export interface FormProps{
   value:string,
   method:string,
+}
+export interface viewTableProps{
+  value:string,
 }

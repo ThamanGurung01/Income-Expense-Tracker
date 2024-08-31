@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
-import { BasicProps } from './components-types'
+import { FormProps } from './components-types'
 import { postService } from '../services/Api/postService';
 
-const Forms:React.FC<BasicProps> = ({value,method}) => {
+const Forms:React.FC<FormProps> = ({value,method}) => {
   const [amount,setAmount]=useState<Number>(1000);
   const [category,setCategory]=useState<string>("Salary");
   const [descriptions,setDescriptions]=useState<string>("");
