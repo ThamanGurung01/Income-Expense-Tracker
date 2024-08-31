@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-const expenseSchema=mongoose.Schema({
+const expenseSchema=new mongoose.Schema({
   expense_amount:{
     type:String,
     required:true,
