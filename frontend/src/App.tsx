@@ -1,10 +1,21 @@
+import { Routes,Route,Link } from "react-router-dom"
 
+import SideBar from "./components/SideBar"
+import Home from "./pages/Home"
+import Income from "./pages/Income"
+import Expense from "./pages/Expense"
 function App() {
-
+  const options=["home","income","expense"];
+  
   return (
-    <>
-    <h1>HomePage</h1>
-    </>
+    <div className="flex w-screen bg-gray-300">
+    <SideBar/>
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/income" element={<Income/>}/>
+      <Route path="/expense" element={<Expense/>}/>
+    </Routes>
+    </div>
   )
 }
 
