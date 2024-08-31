@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { FormProps } from './components-types'
 import { postService } from '../services/Api/postService';
 import {getSpecificService} from "../services/Api/getSpecificService"
+import { patchService } from '../services/Api/patchService';
 const Forms:React.FC<FormProps> = ({value,method,id}) => {
   const [amount,setAmount]=useState<Number>(1000);
   const [category,setCategory]=useState<string>("Salary");
@@ -13,7 +14,10 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
   async function getRequest(id:string,value:string){
     try{
       const data= await getSpecificService(value,id);
-      console.log(data);
+      setAmount(data[value+"_amount"]);
+      setCategory(data[value+"_category"]);
+      setDescriptions(data[value+"_description"]);
+      setDate(data[value+"_date"]);
     }catch(error){
       console.log("error");
     }
@@ -25,9 +29,8 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
   },[id]);
 
   const handleAmount=(e:React.ChangeEvent<HTMLInputElement>)=>{
-    if(Number(e.target.value)>=1000){
       setAmount(Number(e.target.value));
-    }
+
   }
   const handleCategory=(e:React.ChangeEvent<HTMLSelectElement>)=>{
     if(e.target.value!=""){
@@ -48,10 +51,12 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
     if(!SubmitResponse.error){
       const resMsg=SubmitResponse.msg;
       setMessage((c)=>({...c,error:"",msg:resMsg?resMsg:""}));
-      setAmount(1000);
-      setCategory("Salary");
-      setDescriptions("");
-      setDate("");
+      if(method==="POST"){
+        setAmount(1000);
+        setCategory("Salary");
+        setDescriptions("");
+        setDate("");
+      }
       setTimeout(()=>{
         setMessage({msg:"",
           error:"",
@@ -65,8 +70,7 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
 
   const handleSubmit=async(e:React.MouseEvent<HTMLButtonElement>)=>{
   e.preventDefault();
-
-  if(Number(amount)>=1000&&category&&date){
+  if(Number(amount)>=100&&category&&date){
     if(method==="POST"){
       switch (value){
         case "income":{
@@ -94,16 +98,43 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
           break;
         }
       }
+    }else if(method==="PATCH"){
+      switch (value){
+        case "income":{
+          const SubmitResponse =await patchService({
+            income_amount:amount,
+            income_category:category,
+            income_description:descriptions,
+            income_date:date,
+          },value,id);
+          handleResponse(SubmitResponse);
+          break;
+        }
+        case "expense":{
+         const  SubmitResponse=await patchService({
+            expense_amount:amount,
+            expense_category:category,
+            expense_description:descriptions,
+            expense_date:date,
+          },value,id);
+          handleResponse(SubmitResponse);
+          break;
+        }
+        default:{
+          console.log("form error");
+          break;
+        }
+      }
     }
 
   }else{
-    setMessage((c)=>({...c,error:Number(amount)>=1000?"Input all fields":"amount must be greater than 0"}));
+    setMessage((c)=>({...c,error:Number(amount)>=100?"Input all fields":"amount must be greater than 100"}));
   }
 }
   return (
     <div className='w-64 flex flex-col' id="form">
       <span className='text-red-500'>{message.error}</span>
-      <input type="number" name={`${value}_amount`} min={1000} onChange={handleAmount} value={amount?.toString()} required/><br />
+      <input type="number" name={`${value}_amount`} min={1} onChange={handleAmount} value={amount?.toString()} required/><br />
       <select name={`${value}_category`} value={category} onChange={handleCategory} required>
       {value==="expense"?(<><option value="Tax">Tax</option>
         <option value="Rent">Rent</option></>):(<><option value="Salary">Salary</option>

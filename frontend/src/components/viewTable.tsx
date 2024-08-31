@@ -1,12 +1,11 @@
 
 import React, { useState,useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { getService } from '../services/Api/getService';
 import { viewTableProps } from './components-types';
-import { capitalizeFirstLetter } from '../utils/stringUtils';
-import { Link } from 'react-router-dom';
+import { deleteService } from '../services/Api/deleteService';
 const ViewTable:React.FC<viewTableProps> = ({value}) => {
   const [viewData,setViewData]=useState<Array<{[key:string]:string}>>([]);
-  const capitalizedValue=capitalizeFirstLetter(value);
   async function getRequest(){
       try{
         const AllData=await getService(value);
@@ -19,7 +18,14 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
         console.error(`Error fetching ${value} data:`, error);
       }
   }
-
+  async function handleDelete(id:string){
+    try{
+      await deleteService(value,id);
+      getRequest();
+    }catch(error){
+      console.log("error");
+    }
+  }
   useEffect(()=>{getRequest();},[value]);
   return (
     <div>
@@ -34,11 +40,11 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
 </tr>
     </thead>
     <tbody>
-{viewData.map((el,i)=> <tr title={el[value+"_description"]} key={i}>
-<td>{el[value+"_amount"]}</td>
-<td>{el[value+"_category"]}</td>
-<td>{el[value+"_date"]}</td>
-<td> <Link to={"/update/"+el["_id"]+"/"+value}>Update</Link> <button>Delete</button></td>
+{viewData.map((el,i)=> <tr key={i}>
+<td title={el[value+"_description"]}>{el[value+"_amount"]}</td>
+<td title={el[value+"_description"]}>{el[value+"_category"]}</td>
+<td title={el[value+"_description"]}>{el[value+"_date"]}</td>
+<td><Link to={"/update/"+el["_id"]+"/"+value}>Update</Link> <button onClick={()=>handleDelete(el["_id"])}>Delete</button></td>
 </tr>
  )}
     </tbody>
