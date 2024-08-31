@@ -2,7 +2,7 @@
 //packages
 const express=require("express");
 require("dotenv").config();
-
+const cors=require("cors");
 //files
 const connectToDb=require("./db/connectToDb");
 const dbUrl=process.env.DB_URL;
@@ -22,7 +22,7 @@ connectToDb(dbUrl);
 //middlewares
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-
+app.use(cors());
 //routes
 app.get("/",(req,res)=>{
   res.json("HomePage");
