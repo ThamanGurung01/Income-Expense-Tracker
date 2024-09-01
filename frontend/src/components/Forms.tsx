@@ -5,7 +5,7 @@ import {getSpecificService} from "../services/Api/getSpecificService"
 import { patchService } from '../services/Api/patchService';
 const Forms:React.FC<FormProps> = ({value,method,id}) => {
   const [amount,setAmount]=useState<Number>(1000);
-  const [category,setCategory]=useState<string>("Salary");
+  const [category,setCategory]=useState<string>(value==="expense"?"Tax":"Salary");
   const [descriptions,setDescriptions]=useState<string>("");
   const [date,setDate]=useState<string>("");
   const [message,setMessage]=useState<{msg:string,error:string}>({msg:"",

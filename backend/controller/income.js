@@ -3,7 +3,7 @@ const INCOME=require("../model/income");
 
 async function handleGetAllIncomes(req,res){
   try{
-    const allIncomes=await INCOME.find({});
+    const allIncomes=await INCOME.find({}).sort({createdAt:-1});
     if(allIncomes.length===0) return res.status(404).json({error:"No data"});
   return res.status(200).json(allIncomes); 
   }catch(error){
