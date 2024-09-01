@@ -9,3 +9,6 @@
 .sidebar-option{
   @apply border-4 w-screen min-h-screen;
 }
+.graph-width{
+width: 45rem;
+}

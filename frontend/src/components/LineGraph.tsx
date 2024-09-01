@@ -65,7 +65,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
   };
 
   const options = {
-    responsive: true,
+    // responsive: true,
     plugins: {
       legend: {
         position: "top" as const,
@@ -78,7 +78,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
   };
 
   return (
-    <div>
+    <div className="">
       <span>LineGraph</span>
       <Line options={options} data={LineData} />
     </div>

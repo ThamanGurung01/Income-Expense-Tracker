@@ -1,4 +1,4 @@
-The Expense Tracker is a simple and intuitive application designed to help users manage their finances by tracking income and expenses.
+The Income & Expense Tracker is a simple and intuitive application designed to help users manage their finances by tracking income and expenses.
 It allows users to categorize their transactions, view summaries of their financial activity, and gain insights into their spending habits.
 
 Features:

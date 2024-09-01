@@ -5,9 +5,8 @@ import Home from "./pages/Home"
 import Income from "./pages/Income"
 import Expense from "./pages/Expense"
 import View from "./pages/View"
-import UpdatePage from "./pages/updatePage"
+import UpdatePage from "./pages/UpdatePage"
 function App() {
-  const options=["home","income","expense"];
   
   return (
     <div className="flex w-screen bg-gray-300">
