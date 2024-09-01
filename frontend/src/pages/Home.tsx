@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { expenseIncomeData } from '../utils/expenseIncomeData'
+import LineGraph from '../components/LineGraph';
 
 const Home = () => {
   const [AllData, setAllData] = useState<Array<{
@@ -17,12 +18,25 @@ const Home = () => {
     income_amount:0,
     expense_amount:0,
   }]);
+  const [Incomes,setIncomes]=useState([{
+    income_amount: 0,
+    income_category: "",
+    income_description: "",
+    income_date: "",
+  }]);
+  const [Expenses,setExpenses]=useState([{
+    expense_amount: 0,
+    expense_category: "",
+    expense_description: "",
+    expense_date: "",
+  }]);
   const [totalIncomes,setTotalIncomes]=useState<number>(0);
   const [totalExpenses,setTotalExpenses]=useState<number>(0);
   const [totalSaving,setTotalSaving]=useState<number>(0);
-        
   const handleData = async () => {
-    setAllData(await expenseIncomeData());
+    setAllData(await expenseIncomeData("all"));
+    setIncomes(await expenseIncomeData("income"));
+    setExpenses(await expenseIncomeData("expense"));
   }
   useEffect(() => {
     handleData();
@@ -49,9 +63,10 @@ const Home = () => {
   return (
     <div className='sidebar-option'>
       <span>Home</span>
-      <div className='flex justify-around'>
+      <div className='flex justify-around flex-col md:flex-row'>
         <div>
-          chart
+          <span>chart</span>
+          <LineGraph lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
         <div>
           {AllData.map((el, i) => <div className='flex gap-x-4' key={i}>
@@ -68,6 +83,8 @@ const Home = () => {
         <span>totalIncomes:{totalIncomes}</span><br />
         <span>totalExpenses:{totalExpenses}</span><br />
         <span>totalSaving:{totalSaving}</span><br />
+        {/* {Incomes.map((el,i)=> <li key={i}>{el.income_amount}</li> )} <br />
+        {Expenses.map((el,i)=> <li key={i}>{el.expense_amount}</li> )} */}
       </div>
     </div>
   )
