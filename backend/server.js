@@ -7,8 +7,10 @@ const cors=require("cors");
 const connectToDb=require("./db/connectToDb");
 const dbUrl=process.env.DB_URL;
 
+//routes
 const expense= require("./routes/expense");
 const income=require("./routes/income");
+const user=require("./routes/user");
 //imports ends
 
 
@@ -29,7 +31,9 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/expense",expense);
-app.use("/income",income)
+app.use("/income",income);
+app.use("/user",user);
+
 
 
 app.listen(PORT,()=>{console.log("SERVER STARTED")});
