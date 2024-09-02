@@ -15,6 +15,11 @@ const incomeSchema=new mongoose.Schema({
     type:String,
     required:true,
   },
+  author:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"users",
+    required:true,
+  },
 },{timestamps:true});
 
 const Income=mongoose.model("incomes",incomeSchema);

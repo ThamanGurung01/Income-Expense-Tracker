@@ -15,6 +15,11 @@ const expenseSchema=new mongoose.Schema({
     type:String,
     required:true,
   },
+  author:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:"users",
+    required:true,
+  },
 },{timestamps:true});
 
 const Expense=mongoose.model("expenses",expenseSchema);

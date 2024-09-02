@@ -1,9 +1,10 @@
 const mongoose=require("mongoose");
 const INCOME=require("../model/income");
+const userID=process.env.userId;
 
 async function handleGetAllIncomes(req,res){
   try{
-    const allIncomes=await INCOME.find({}).sort({createdAt:-1});
+    const allIncomes=await INCOME.find({author:userID}).sort({createdAt:-1}).populate("author");
     if(allIncomes.length===0) return res.status(404).json({error:"No data"});
   return res.status(200).json(allIncomes); 
   }catch(error){
@@ -16,7 +17,7 @@ async function handleCreateIncomes(req,res){
     const {income_amount,income_category,income_description,income_date}=req.body;
     if(!income_amount||!income_category||!income_date) return res.status(400).json({error:"Input all fields"});
     if(Number(income_amount)>=0){
-    await INCOME.create({income_amount,income_category,income_description,income_date});
+    await INCOME.create({income_amount,income_category,income_description,income_date,author:userID});
   return res.status(200).json({msg:"Successfully created"});
 }else{
   return res.status(400).json({error:"Amount must be greater than or equal to 0"});
@@ -65,7 +66,7 @@ async function handleGetIncome(req,res){
   try{
     const id=req.params.id;
     if(!id) res.status(400).json({error:"No id"});
-   const getIncome= await INCOME.findById(id);
+   const getIncome= await INCOME.findById(id).populate("author");
    if(!getIncome) return res.status(404).json({error:"No data found"});
  return res.status(200).json(getIncome);
   }catch(error){
