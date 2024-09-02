@@ -11,6 +11,7 @@ const dbUrl=process.env.DB_URL;
 const expense= require("./routes/expense");
 const income=require("./routes/income");
 const user=require("./routes/user");
+const login=require("./routes/Login");
 //imports ends
 
 
@@ -24,14 +25,14 @@ connectToDb(dbUrl);
 //middlewares
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  credentials:true,
+}));
 //routes
 app.get("/",(req,res)=>{
   res.json("HomePage");
 })
-app.get("/login",)
-
-
+app.use("/login",login);
 app.use("/expense",expense);
 app.use("/income",income);
 app.use("/user",user);
