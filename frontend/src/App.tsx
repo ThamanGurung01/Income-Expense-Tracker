@@ -6,6 +6,8 @@ import Income from "./pages/Income"
 import Expense from "./pages/Expense"
 import View from "./pages/View"
 import UpdatePage from "./pages/UpdatePage"
+import Login from "./pages/Login"
+import Signup from "./pages/SignUp"
 function App() {
   
   return (
@@ -17,6 +19,9 @@ function App() {
       <Route path="/expense" element={<Expense/>}/>
       <Route path="/view" element={<View/>}/>
       <Route path="/update/:id/:value" element={<UpdatePage/>}/>
+      <Route path="/login" element={<Login/>}/>
+      <Route path="/signup" element={<Signup/>}/>
+
     </Routes>
     </div>
   )

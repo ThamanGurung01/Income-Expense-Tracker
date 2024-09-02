@@ -21,3 +21,7 @@ lineExpenses:Array<{
   expense_date: string,
 }>,
 }
+
+export interface LoginSignupFormProps{
+  formType:string,
+}

@@ -29,6 +29,8 @@ app.use(cors());
 app.get("/",(req,res)=>{
   res.json("HomePage");
 })
+app.get("/login",)
+
 
 app.use("/expense",expense);
 app.use("/income",income);
