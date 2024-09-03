@@ -1,12 +1,12 @@
 const mongoose=require("mongoose");
 const EXPENSE=require("../model/expense");
-const userID=process.env.userId;
-// console.log(userID);
 
 async function handleGetAllExpenses(req,res){
   try{
+    const userID=req.user.id;
+if(!userID) return res.status(400).json({error:"login token error"});
     const allExpenses=await EXPENSE.find({author:userID}).sort({createdAt:-1}).populate("author");
-    if(allExpenses.length===0) return res.status(404).json({error:"no data"});
+    if(allExpenses.length===0) return res.status(200).json([{}]);
   return res.json(allExpenses); 
   }catch(error){
     res.status(500).json({error:"server error"});
@@ -15,11 +15,12 @@ async function handleGetAllExpenses(req,res){
 
 async function handleCreateExpenses(req,res){
   try{
+    const userID=req.user.id;
+if(!userID) return res.status(400).json({error:"login token error"});
     const {expense_amount,expense_category,expense_description,expense_date}=req.body;
-    // console.log(req.body);
     if(!expense_amount||!expense_category||!expense_date) return res.status(400).json({error:"Input all fields"});
     if(Number(expense_amount)>=0){
-    await EXPENSE.create({expense_amount,expense_category,expense_description,expense_date,userID});
+    await EXPENSE.create({expense_amount,expense_category,expense_description,expense_date,author:userID});
   return res.status(200).json({msg:"successfully created"});
 }else{
   return res.status(400).json({error:"must be greater than or equal to 0"});
@@ -69,7 +70,7 @@ async function handleGetExpense(req,res){
     const id=req.params.id;
     if(!id) res.status(400).json({error:"error: no id"});
    const getExpense= await EXPENSE.findById(id);
-   if(!getExpense) return res.status(404).json({error:"no data found"});
+   if(!getExpense) return res.status(200).json({});
  return res.status(200).json(getExpense);
   }catch(error){
     if (error instanceof mongoose.CastError) {

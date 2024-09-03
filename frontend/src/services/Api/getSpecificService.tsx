@@ -4,6 +4,7 @@ export const getSpecificService=async(value:string,id:string)=>{
     const getRequest=post_url+value+"/"+id;
     const response=await fetch(getRequest,{
       method:"GET",
+      credentials:"include",
     }); 
     return await response.json();
   }catch(error){

@@ -1,11 +1,12 @@
 const mongoose=require("mongoose");
 const INCOME=require("../model/income");
-const userID=process.env.userId;
 
 async function handleGetAllIncomes(req,res){
   try{
-    const allIncomes=await INCOME.find({author:userID}).sort({createdAt:-1}).populate("author");
-    if(allIncomes.length===0) return res.status(404).json({error:"No data"});
+const userID=req.user.id;
+if(!userID) return res.status(400).json({error:"login token error"});
+const allIncomes=await INCOME.find({author:userID}).sort({createdAt:-1}).populate("author");
+    if(allIncomes.length===0) return res.status(200).json([{}]);
   return res.status(200).json(allIncomes); 
   }catch(error){
     res.status(500).json({error:"Server error"});
@@ -14,6 +15,8 @@ async function handleGetAllIncomes(req,res){
 
 async function handleCreateIncomes(req,res){
   try{
+    const userID=req.user.id;
+if(!userID) return res.status(400).json({error:"login token error"});
     const {income_amount,income_category,income_description,income_date}=req.body;
     if(!income_amount||!income_category||!income_date) return res.status(400).json({error:"Input all fields"});
     if(Number(income_amount)>=0){
@@ -67,7 +70,7 @@ async function handleGetIncome(req,res){
     const id=req.params.id;
     if(!id) res.status(400).json({error:"No id"});
    const getIncome= await INCOME.findById(id).populate("author");
-   if(!getIncome) return res.status(404).json({error:"No data found"});
+   if(!getIncome) return res.status(200).json({});
  return res.status(200).json(getIncome);
   }catch(error){
     if (error instanceof mongoose.CastError) {

@@ -4,6 +4,7 @@ export const deleteService=async(value:string,id:string)=>{
     const getRequest=post_url+value+"/"+id;
     const response=await fetch(getRequest,{
       method:"DELETE",
+      credentials:"include",
     }); 
     return await response.json();
   }catch(error){

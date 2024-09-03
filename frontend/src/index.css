@@ -12,3 +12,6 @@
 .graph-width{
 width: 45rem;
 }
+.tableElementBorder{
+  @apply border border-red-600;
+}

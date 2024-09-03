@@ -30,22 +30,23 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
   return (
     <div>
       <legend>{value.toUpperCase()}</legend>
-      <table>
+      <table className='table-auto border-collapse border border-red-600'>
     <thead>
 <tr>
-<th>Amount</th>
-      <th>Category</th>
-      <th>Date</th>
-      <th>Action</th>
+<th className='tableElementBorder'>Amount</th>
+      <th className='tableElementBorder'>Category</th>
+      <th className='tableElementBorder'>Date</th>
+      <th className='tableElementBorder' colSpan={2}>Action</th>
 </tr>
     </thead>
     <tbody>
-{viewData.map((el,i)=> <tr key={i}>
-<td title={el[value+"_description"]}>{el[value+"_amount"]}</td>
-<td title={el[value+"_description"]}>{el[value+"_category"]}</td>
-<td title={el[value+"_description"]}>{el[value+"_date"]}</td>
-<td><Link to={"/update/"+el["_id"]+"/"+value}>Update</Link> <button onClick={()=>handleDelete(el["_id"])}>Delete</button></td>
-</tr>
+{viewData.map((el,i)=> (el[value+"_category"])?(<tr key={i}>
+<td className='tableElementBorder' title={el[value+"_description"]}>{el[value+"_amount"]}</td>
+<td className='tableElementBorder' title={el[value+"_description"]}>{el[value+"_category"]}</td>
+<td className='tableElementBorder' title={el[value+"_description"]}>{el[value+"_date"]}</td>
+<td className='tableElementBorder'><Link to={"/update/"+el["_id"]+"/"+value}>Update</Link></td>
+<td className='tableElementBorder'><button onClick={()=>handleDelete(el["_id"])}>Delete</button></td>
+</tr>):( <tr key={i}><td className='tableElementBorder text-center' colSpan={4}>No data found</td></tr> )
  )}
     </tbody>
   </table>

@@ -3,7 +3,9 @@ import { FormProps } from './components-types'
 import { postService } from '../services/Api/postService';
 import {getSpecificService} from "../services/Api/getSpecificService"
 import { patchService } from '../services/Api/patchService';
+import { useNavigate } from 'react-router-dom';
 const Forms:React.FC<FormProps> = ({value,method,id}) => {
+  const navigate=useNavigate();
   const [amount,setAmount]=useState<Number>(1000);
   const [category,setCategory]=useState<string>(value==="expense"?"Tax":"Salary");
   const [descriptions,setDescriptions]=useState<string>("");
@@ -47,7 +49,9 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
 
   const handleResponse=(SubmitResponse:{msg?:string,
     error?:string,
+    tokenError?:string,
   })=>{
+    if(SubmitResponse.tokenError) return navigate("/login");
     if(!SubmitResponse.error){
       const resMsg=SubmitResponse.msg;
       setMessage((c)=>({...c,error:"",msg:resMsg?resMsg:""}));

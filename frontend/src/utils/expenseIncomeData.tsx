@@ -1,9 +1,11 @@
+
 import { getService } from "../services/Api/getService";
 
 export const expenseIncomeData = async(what:string) => {
   const Incomes=await getService("income");
 
-  const Expenses=await getService("expense");
+  let Expenses=await getService("expense");
+  if(Expenses.error) Expenses=[];
   const allData=[...Incomes,...Expenses].sort((a,b)=>{
     return (new Date(b.createdAt).getTime()-new Date(a.createdAt).getTime());
   });

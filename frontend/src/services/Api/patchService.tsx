@@ -3,6 +3,7 @@ export const patchService=async(data:object,value:string,id?:string)=>{
   try{
     const response=await fetch(post_url+value+"/"+id,{
       method:"PATCH",
+      credentials:"include",
       headers:{
         "Content-Type":"application/json",
       },

@@ -3,6 +3,7 @@ export const loginService=async(data:object,value:string)=>{
   try{
     const response=await fetch(post_url+value,{
       method:"POST",
+      credentials:"include",
       headers:{
         "Content-Type":"application/json",
       },
