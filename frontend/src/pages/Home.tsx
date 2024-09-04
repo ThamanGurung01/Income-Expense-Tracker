@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { expenseIncomeData } from '../utils/expenseIncomeData'
 import LineGraph from '../components/LineGraph';
 

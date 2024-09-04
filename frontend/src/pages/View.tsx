@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React from 'react'
 import ViewTable from '../components/viewTable'
 
 const View:React.FC = () => {
