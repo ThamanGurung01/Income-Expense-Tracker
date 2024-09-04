@@ -27,6 +27,8 @@ connectToDb(dbUrl);
 app.use(cors({
   origin: frontendUrl,
   credentials:true,
+  secure: true,
+  sameSite: 'None',
 }));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
