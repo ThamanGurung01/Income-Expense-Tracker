@@ -2,11 +2,12 @@ import React, { ChangeEvent, useState } from 'react'
 import { LoginSignupFormProps } from './components-types';
 import { postService } from '../services/Api/postService';
 import { loginService } from '../services/Authentication/loginService';
-import { cookieService } from '../services/Authentication/cookieService';
+import { cookieService, getCookie } from '../services/Authentication/cookieService';
 
-import { useNavigate} from 'react-router-dom';
+import { useNavigate,Navigate} from 'react-router-dom';
 const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
   const navigate=useNavigate();
+  const Cookie=getCookie("Token");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,7 +50,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
               });
 
             }, 2000);
-            navigate("/login");
+            <Navigate to="/" replace/>
           } else {
             setResponse({ msg: "", error: "Password length must be greater than 6" });
           }
