@@ -1,7 +1,13 @@
 // import React from 'react'
 import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { removeCookie } from "../services/Authentication/cookieService";
 const SideBar = () => {
-
+  const navigate=useNavigate();
+  const removeTokenCookie=()=>{
+    removeCookie("Token");
+    navigate("/login");
+  }
   return (
     <div className="border-4 w-40 min-h-screen flex flex-col">
       <span>SideBar</span>
@@ -9,8 +15,7 @@ const SideBar = () => {
       <Link to="/income">Income</Link>
       <Link to="/expense">Expense</Link>
       <Link to="/view">View</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/signup">SignUp</Link>
+      <button type="button" onClick={removeTokenCookie}>Log Out</button>
     </div>
   )
 }

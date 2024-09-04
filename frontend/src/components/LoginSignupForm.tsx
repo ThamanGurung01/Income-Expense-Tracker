@@ -50,8 +50,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
 
             }, 2000);
             navigate("/login");
-            //navigate to Login
-
           } else {
             setResponse({ msg: "", error: "Password length must be greater than 6" });
           }
@@ -86,7 +84,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
 
             }, 2000);
             navigate("/");
-            //navigate to Login
 
           } else {
             setResponse({ msg: "", error: "Password length must be greater than 6" });
