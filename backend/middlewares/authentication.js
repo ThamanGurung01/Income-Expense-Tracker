@@ -2,7 +2,7 @@ const jwt=require("jsonwebtoken");
 
 function verifyUser(req,res,next){
 const secret_key=process.env.secret_key;
-if(!req.headers["authorization"]) res.json({tokenError:"header error"});
+if(!req.headers["authorization"]) return res.json({tokenError:"header error"});
 const authHeader=req.headers["authorization"];
 const token = authHeader ? authHeader.split('Bearer ')[1] : null;
 console.log(token);

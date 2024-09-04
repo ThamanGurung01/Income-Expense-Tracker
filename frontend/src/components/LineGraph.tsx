@@ -38,7 +38,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
     ExpenseAmount.push(el.expense_amount);
     ExpenseDate.push(el.expense_date);
   });
-  const allDates = (IncomeDate!==null&&ExpenseDate!==null&&ExpenseDate&&IncomeDate)?(([...new Set([...IncomeDate, ...ExpenseDate])]).sort()):[];
+  const allDates = ([...new Set([...IncomeDate, ...ExpenseDate])]).sort();
   const incomeData = allDates.map(date => IncomeAmount[IncomeDate.indexOf(date)] || 0);
   const expenseData = allDates.map(date => ExpenseAmount[ExpenseDate.indexOf(date)] || 0);
 
