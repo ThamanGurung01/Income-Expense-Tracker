@@ -16,7 +16,7 @@ try{
     const token= jwt.sign(payload,secretKey);
     res.status(200).json(token);
   }else{
-    return res.status(404).json({error:"Incorrect email or password"});
+    return res.status(200).json({error:"Incorrect email or password"});
   }
 }catch(error){
   console.log(error);

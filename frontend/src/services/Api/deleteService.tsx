@@ -8,7 +8,6 @@ export const deleteService=async(value:string,id:string)=>{
     }); 
     if (!response.ok) {
       console.error('Failed to fetch:', response.status, response.statusText);
-      throw new Error('Failed to fetch: ' + response.statusText);
   }
     return await response.json();
   }catch(error){

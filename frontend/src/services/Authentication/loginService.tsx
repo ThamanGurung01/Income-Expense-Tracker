@@ -12,7 +12,6 @@ export const loginService=async(data:object,value:string)=>{
     }); 
     if (!response.ok) {
       console.error('Failed to fetch:', response.status, response.statusText);
-      throw new Error('Failed to fetch: ' + response.statusText);
   }
     return await response.json();
   }catch(error){
