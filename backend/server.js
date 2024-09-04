@@ -12,7 +12,7 @@ const verifyUser=require("./middlewares/authentication")
 const expense= require("./routes/expense");
 const income=require("./routes/income");
 const user=require("./routes/user");
-const login=require("./routes/Login");
+const login=require("./routes/login");
 //imports ends
 
 
