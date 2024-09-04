@@ -10,11 +10,7 @@ export const postService=async(data:object,value:string)=>{
       },
       body:JSON.stringify(data),
     }); 
-    if (!response.ok) {
-      console.error('Failed to fetch:', response.status, response.statusText);
-  }
     return await response.json();
   }catch(error){
-    throw new Error(`Error in POST request: ${(error as Error).message}`);
   }
 }
