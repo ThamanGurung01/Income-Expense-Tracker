@@ -25,3 +25,9 @@ lineExpenses:Array<{
 export interface LoginSignupFormProps{
   formType:string,
 }
+
+
+export interface ProtectedRouteProps{
+  element:React.ReactElement,
+  path:string,
+}
