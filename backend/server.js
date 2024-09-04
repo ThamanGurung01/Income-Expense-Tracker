@@ -26,29 +26,15 @@ connectToDb(dbUrl);
 //middlewares
 app.use(cookieParser());
 
-// app.use(cors({
-//   origin: frontendUrl,
-//   credentials:true,
-// }));
 app.use(cors({
-  credentials: true,
-  origin: (origin, callback) => {
-      if (frontendUrl.includes(origin) || !origin) {
-          callback(null, true);
-      } else {
-          callback(new Error('Not allowed by CORS'));
-      }
-  }
+  origin: frontendUrl,
+  credentials:true,
 }));
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 app.use(cookieParser());
 //routes
-app.use((req, res, next) => {
-  console.log('Cookies:', req.cookies);
-  next();
-});
 app.get("/",(req,res)=>{
   res.json("HomePage");
 })

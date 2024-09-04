@@ -14,12 +14,7 @@ try{
     };
     const secretKey=process.env.secret_key;
     const token= jwt.sign(payload,secretKey);
-    // res.status(200).json(token);
-    res.cookie('token', token, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'None'
-  });
+    res.status(200).json(token);
   }else{
     return res.status(200).json({error:"Incorrect email or password"});
   }
