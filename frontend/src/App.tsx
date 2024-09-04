@@ -28,7 +28,7 @@ function App() {
       <Route path="/update/:id/:value" element={Cookie?<UpdatePage/>:<Navigate to={"/login"} replace />}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/signup" element={<Signup/>}/>
-      <Route path="*" element={Cookie?(<Navigate to={"/"} replace />):(<Navigate to={"/login"} replace />)} />
+      <Route path="*" element={Cookie?(<Navigate to={"/"} replace />):(<Navigate to={"/"} replace />)} />
     </Routes>
 </div>    
 </div>
