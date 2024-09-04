@@ -1,7 +1,8 @@
 const post_url=import.meta.env.VITE_BACKEND_URL;
 export const patchService=async(data:object,value:string,id?:string)=>{
   try{
-    const response=await fetch(post_url+value+"/"+id,{
+    const url=post_url+value;
+    const response=await fetch(url+"/"+id,{
       method:"PATCH",
       credentials:"include",
       headers:{

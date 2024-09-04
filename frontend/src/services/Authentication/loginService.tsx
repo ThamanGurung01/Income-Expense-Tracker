@@ -1,7 +1,8 @@
 const post_url=import.meta.env.VITE_BACKEND_URL;
 export const loginService=async(data:object,value:string)=>{
   try{
-    const response=await fetch(post_url+value,{
+    const url=post_url+value;
+    const response=await fetch(url,{
       method:"POST",
       credentials:"include",
       headers:{
