@@ -5,7 +5,6 @@ const secret_key=process.env.secret_key;
 if(!req.headers["authorization"]) return res.json({tokenError:"header error"});
 const authHeader=req.headers["authorization"];
 const token = authHeader ? authHeader.split('Bearer ')[1] : null;
-console.log(token);
 if(token){
     jwt.verify(token,secret_key,(err,decoded)=>{
       if (err) {
@@ -18,7 +17,6 @@ if(token){
     });
 
 }else{
-  console.log("no token")
 return res.status(404).json({tokenError:"no token"});
 }
 }
