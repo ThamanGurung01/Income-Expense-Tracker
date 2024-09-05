@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { LoginSignupFormProps } from './components-types';
 import { postService } from '../services/Api/postService';
 import { loginService } from '../services/Authentication/loginService';
-import { cookieService, getCookie } from '../services/Authentication/cookieService';
+import { cookieService } from '../services/Authentication/cookieService';
 
 import { useNavigate} from 'react-router-dom';
 const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
@@ -15,15 +15,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
     error: "",
   });
   const emailPattern = /^[A-Za-z]+[A-Za-z0-9]*@gmail.com$/;
-
-
-
-  useEffect(()=>{
-  const Cookie=getCookie("Token");
-    if(Cookie){
-      navigate("/",{ replace: true });
-    }
-  },[navigate])
 
   const handleName = (e: ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -83,9 +74,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
                 msg: "login successfull",
                 error: "",
               });
-              setTimeout(() => {
-                navigate("/",{replace:true});
-              }, 4000);
             }else{
               setResponse({
                 msg: "",
