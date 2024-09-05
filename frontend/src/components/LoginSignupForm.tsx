@@ -83,6 +83,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
                 msg: "login successfull",
                 error: "",
               });
+            navigate("/",{replace:true});
             }else{
               setResponse({
                 msg: "Incorrect email or password",
@@ -98,7 +99,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
               });
 
             }, 2000);
-            navigate("/");
 
           } else {
             setResponse({ msg: "", error: "Password length must be greater than 6" });
