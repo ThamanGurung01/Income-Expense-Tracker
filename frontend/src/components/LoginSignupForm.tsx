@@ -86,8 +86,8 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
             navigate("/",{replace:true});
             }else{
               setResponse({
-                msg: "Incorrect email or password",
-                error: "",
+                msg: "",
+                error: "Incorrect email or password",
               });
             }
             setEmail("");
