@@ -83,7 +83,9 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
                 msg: "login successfull",
                 error: "",
               });
-            navigate("/",{replace:true});
+              setTimeout(() => {
+                navigate("/",{replace:true});
+              }, 4000);
             }else{
               setResponse({
                 msg: "",
@@ -97,7 +99,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
                 msg: "",
                 error: "",
               });
-
             }, 2000);
 
           } else {
