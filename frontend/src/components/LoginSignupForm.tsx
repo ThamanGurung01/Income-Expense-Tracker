@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import { LoginSignupFormProps } from './components-types';
 import { postService } from '../services/Api/postService';
 import { loginService } from '../services/Authentication/loginService';
@@ -15,15 +15,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
     error: "",
   });
   const emailPattern = /^[A-Za-z]+[A-Za-z0-9]*@gmail.com$/;
-  const [isCookie,setIsCookie]=useState<boolean>();
-
-  useEffect(
-    ()=>{
-      const getCookie=cookieService("Token");
-      setIsCookie(getCookie.toString().includes("Bearer ")?true:false);
-    }
-    ,[isCookie]);
-
 
   const handleName = (e: ChangeEvent<HTMLInputElement>) => {
     setUserName(e.target.value);
@@ -83,9 +74,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
                 msg: "login successfull",
                 error: "",
               });
-              if(isCookie){
-                navigate("/",{replace:true});
-              }
             }else{
               setResponse({
                 msg: "",
