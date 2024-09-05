@@ -21,7 +21,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
 
   useEffect(()=>{
     if(Cookie){
-      <Navigate to="/" replace/>
+      navigate("/",{ replace: true });
     }
   },[])
 
@@ -77,10 +77,15 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
               email: email,
               password: password,
             }, "login");
+            if (!response.error) {
             cookieService(response);
-            if (response) {
               setResponse({
                 msg: "login successfull",
+                error: "",
+              });
+            }else{
+              setResponse({
+                msg: "Incorrect email or password",
                 error: "",
               });
             }
