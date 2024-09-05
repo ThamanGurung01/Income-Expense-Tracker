@@ -87,7 +87,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
                 msg: "",
                 error: "",
               });
-              navigate("/",{replace:true})
+              window.location.reload();
             }, 2000);
 
           } else {
