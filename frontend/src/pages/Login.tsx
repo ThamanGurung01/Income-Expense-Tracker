@@ -12,9 +12,12 @@ const Login = () => {
       }
     },[navigate]);
   return (
-    <div>
-<span>Login</span><Link to={"/signup"}>SignUp</Link>
+    <div className='loginSignup'>
 <LoginSignupForm formType="login"/>
+<div className='text-xs mb-2'>
+  <span>Don't have an account? </span>
+<Link className=' text-blue-800 hover:text-blue-500' to={"/signup"}>Signup</Link>
+</div>
     </div>
   )
 }

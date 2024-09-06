@@ -102,12 +102,13 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
     }
   }
   return (
-    <div className='flex flex-col'>
+    <div className='flex flex-col items-center'>
+<span className='m-3 font-bold'>Income Expense Tracker</span>
       {response.error ? (<span className='text-red-600'>{response.error}</span>) : ""}
-      {formType === "signup" ? (<input type="text" placeholder='Name' onChange={(e) => handleName(e)} value={userName} />) : ""}
-      <input type="email" placeholder='Email' onChange={(e) => handleEmail(e)} value={email} />
-      <input type="password" placeholder='Password' onChange={(e) => handlePassword(e)} value={password} />
-      <button type='button' onClick={handleSubmit}>{formType === "signup" ? "Sign Up" : "Log In"} </button>
+      {formType === "signup" ? (<input className='inputForm' type="text" placeholder='Name' onChange={(e) => handleName(e)} value={userName} />) : ""}
+      <input className='inputForm' type="email" placeholder='Email' onChange={(e) => handleEmail(e)} value={email} />
+      <input className='inputForm' type="password" placeholder='Password' onChange={(e) => handlePassword(e)} value={password} />
+      <button className='buttonForm buttonFormHover' type='button' onClick={handleSubmit}>{formType === "signup" ? "Sign Up" : "Log In"} </button>
       {response.msg ? (<span className='text-green-600'>{response.msg}</span>) : ""}
     </div>
   )
