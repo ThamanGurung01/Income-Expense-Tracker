@@ -17,14 +17,14 @@ width: 45rem;
 }
 
 .loginSignup{
-  @apply w-full border-4 flex flex-col items-center text-2xl;
+  @apply w-full border-4 flex flex-col items-center text-2xl min-h-screen overflow-hidden p-5;
 }
 .inputForm{
-@apply px-2 border rounded-md border-black mb-3;
+@apply px-2 border rounded-md border-black mb-5;
 }
 .buttonForm{
-  @apply rounded-md bg-gray-600 text-white font-bold w-36 py-1 mb-2;
+  @apply rounded-md bg-gray-600 text-xl text-white font-bold w-36 py-1 mb-3;
 }
 .buttonFormHover{
-  @apply hover:text-gray-600 hover:bg-gray-300;
+  @apply hover:text-black hover:bg-gray-300;
 }

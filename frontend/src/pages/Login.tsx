@@ -16,7 +16,7 @@ const Login = () => {
 <LoginSignupForm formType="login"/>
 <div className='text-xs mb-2'>
   <span>Don't have an account? </span>
-<Link className=' text-blue-800 hover:text-blue-500' to={"/signup"}>Signup</Link>
+<Link className='text-base text-blue-800 hover:text-blue-500' to={"/signup"}>Signup</Link>
 </div>
     </div>
   )

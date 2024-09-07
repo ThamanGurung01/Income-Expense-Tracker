@@ -6,7 +6,7 @@ const Signup = () => {
   return (
     <div className='loginSignup'>
       <LoginSignupForm formType="signup"/>
-      <Link className='mb-2 text-xs text-blue-800 hover:text-blue-500' to={"/login"}>Login</Link>   
+      <Link className='mb-2 text-base text-blue-800 hover:text-blue-500' to={"/login"}>Login</Link>   
     </div>
   )
 }
