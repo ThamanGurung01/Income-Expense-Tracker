@@ -102,8 +102,8 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
     }
   }
   return (
-    <div className='flex flex-col items-center'>
-<span className='mt-5 mb-10 text-4xl font-bold'>Income Expense Tracker</span>
+    <div className='flex flex-col items-center text-xl sm:text-2xl'>
+<span className='mt-5 mb-5 font-bold sm:text-2xl lg:text-4xl lg:mb-10'>Income Expense Tracker</span>
       {response.error ? (<span className='text-red-600'>{response.error}</span>) : ""}
       {formType === "signup" ? (<input className='inputForm' type="text" placeholder='Name' onChange={(e) => handleName(e)} value={userName} />) : ""}
       <input className='inputForm' type="email" placeholder='Email' onChange={(e) => handleEmail(e)} value={email} />

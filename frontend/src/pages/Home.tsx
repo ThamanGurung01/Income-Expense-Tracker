@@ -62,17 +62,14 @@ const Home = () => {
   },[AllData]);
   return (
     <div className='sidebar-option'>
-      <span>Home</span>
-      <div className='flex justify-around flex-col md:flex-row'>
-        <div>
-          <span>chart</span>
+      <div className='flex justify-around flex-col lg:flex-row'>
+        <div className=''>
           <LineGraph lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
         <div>
           {AllData.map((el, i) => <div className='flex gap-x-4' key={i}>
             <span>{el.income_amount ? el.income_amount : el.expense_amount}</span>
             <span>{el.income_category ? el.income_category : el.expense_category}</span>
-            {/* <span>{el.income_description ? el.income_description : el.expense_description}</span> */}
             <span>{el.income_date ? el.income_date : el.expense_date}</span>
             </div>)}
         </div>

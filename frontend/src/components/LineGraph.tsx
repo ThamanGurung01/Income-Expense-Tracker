@@ -38,6 +38,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
     ExpenseAmount.push(el.expense_amount);
     ExpenseDate.push(el.expense_date);
   });
+
   const allDates = ([...new Set([...IncomeDate, ...ExpenseDate])]).sort();
   const incomeData = allDates.map(date => IncomeAmount[IncomeDate.indexOf(date)] || 0);
   const expenseData = allDates.map(date => ExpenseAmount[ExpenseDate.indexOf(date)] || 0);
@@ -65,7 +66,8 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
   };
 
   const options = {
-    // responsive: true,
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: "top" as const,
@@ -75,11 +77,19 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
         text: "Line Chart",
       },
     },
+    scales: {
+      x: {
+        ticks: {
+          autoSkip: true,
+          maxRotation: 0,
+          minRotation: 0,
+        },
+      },
+    },
   };
 
   return (
-    <div className="">
-      <span>LineGraph</span>
+    <div className="w-60 sm:w-72 md:w-72">
       <Line options={options} data={LineData} />
     </div>
   );
