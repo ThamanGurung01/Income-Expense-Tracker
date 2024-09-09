@@ -89,7 +89,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
   };
 
   return (
-    <div className="min-h-44 sm:min-h-64 md:min-h-72 lg:min-h-96">
+    <div className="w-52 min-h-44 sm:min-h-64 sm:w-auto md:min-h-72 lg:min-h-96">
       <Line options={options} data={LineData} />
     </div>
   );
