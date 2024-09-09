@@ -9,7 +9,7 @@ const SideBar = () => {
     navigate("/login");
   }
   return (
-    <div className="border-4 min-h-screen flex flex-col text-center px-2 md:w-36">
+    <div className="border-4 flex flex-col text-center px-2 md:w-36">
       <span>SideBar</span>
       <Link to="/">Home</Link>
       <Link to="/income">Income</Link>
