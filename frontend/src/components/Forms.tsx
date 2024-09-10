@@ -138,7 +138,7 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
   return (
     <div className='w-64 flex flex-col' id="form">
       <span className='text-red-500'>{message.error}</span>
-      <input type="number" name={`${value}_amount`} min={1} onChange={handleAmount} value={amount?.toString()} required/><br />
+      <input type="number" name={`${value}_amount`} min={1} max={10000000} onChange={handleAmount} value={amount?.toString()} required/><br />
       <select name={`${value}_category`} value={category} onChange={handleCategory} required>
       {value==="expense"?(<><option value="Tax">Tax</option>
         <option value="Rent">Rent</option></>):(<><option value="Salary">Salary</option>

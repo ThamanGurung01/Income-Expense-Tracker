@@ -49,16 +49,16 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
       {
         label: "Incomes",
         data: incomeData,
-        borderColor: "red",
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "blue",
+        backgroundColor: "rgba(54, 162, 235, 0.2)",
         borderWidth: 2,
         tension: 0.4,
       },
       {
         label: "Expenses",
         data: expenseData,
-        borderColor: "blue",
-        backgroundColor: "rgba(54, 162, 235, 0.2)",
+        borderColor: "red",
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderWidth: 2,
         tension: 0.4,
       }
@@ -70,11 +70,21 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
     maintainAspectRatio: false,
     plugins: {
       legend: {
+        labels: {
+          color: "black",
+          font: {
+            size: 15,
+          },
+        },
         position: "top" as const,
+
       },
       title: {
         display: true,
         text: "Line Chart",
+        color: "black",
+        padding: 10,
+        font: { size: 19, },
       },
     },
     scales: {
@@ -83,6 +93,21 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
           autoSkip: true,
           maxRotation: 0,
           minRotation: 0,
+          color: "black",
+          font: {
+            size: 15,
+          }
+        },
+      },
+      y: {
+        ticks: {
+          autoSkip: true,
+          maxRotation: 0,
+          minRotation: 0,
+          color: "black",
+          font: {
+            size: 15,
+          }
         },
       },
     },

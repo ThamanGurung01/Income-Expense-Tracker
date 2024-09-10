@@ -15,24 +15,24 @@ const Home = () => {
     expense_date?: string,
 
   }>>([{
-    income_amount:0,
-    expense_amount:0,
+    income_amount: 0,
+    expense_amount: 0,
   }]);
-  const [Incomes,setIncomes]=useState([{
+  const [Incomes, setIncomes] = useState([{
     income_amount: 0,
     income_category: "",
     income_description: "",
     income_date: "",
   }]);
-  const [Expenses,setExpenses]=useState([{
+  const [Expenses, setExpenses] = useState([{
     expense_amount: 0,
     expense_category: "",
     expense_description: "",
     expense_date: "",
   }]);
-  const [totalIncomes,setTotalIncomes]=useState<number>(0);
-  const [totalExpenses,setTotalExpenses]=useState<number>(0);
-  const [totalSaving,setTotalSaving]=useState<number>(0);
+  const [totalIncomes, setTotalIncomes] = useState<number>(0);
+  const [totalExpenses, setTotalExpenses] = useState<number>(0);
+  const [totalSaving, setTotalSaving] = useState<number>(0);
   const handleData = async () => {
     setAllData(await expenseIncomeData("all"));
     setIncomes(await expenseIncomeData("income"));
@@ -42,46 +42,53 @@ const Home = () => {
     handleData();
   }, []);
 
-  useEffect(()=>{
-    let incomes=0;
-    let expenses=0;
-    let savings=0;
+  useEffect(() => {
+    let incomes = 0;
+    let expenses = 0;
+    let savings = 0;
 
-    AllData.forEach(el=>{
-      if(el.expense_amount>0){
-        expenses+=Number(el.expense_amount);
-        savings-=Number(el.expense_amount);
-      }else if(el.income_amount>0){
-        incomes+=Number(el.income_amount);
-        savings+=Number(el.income_amount);
+    AllData.forEach(el => {
+      if (el.expense_amount > 0) {
+        expenses += Number(el.expense_amount);
+        savings -= Number(el.expense_amount);
+      } else if (el.income_amount > 0) {
+        incomes += Number(el.income_amount);
+        savings += Number(el.income_amount);
       }
       setTotalIncomes(incomes);
       setTotalExpenses(expenses);
       setTotalSaving(savings);
     })
-  },[AllData]);
+  }, [AllData]);
   return (
     <div className='sidebar-option'>
       <div className='flex justify-around flex-col'>
-        <div className='flex-grow'>
+        <div className='flex-grow mt-28 md:mt-16'>
           <LineGraph lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
-        <div className=''>
-          {AllData.map((el, i) => <div className='flex gap-x-4' key={i}>
-            <span>{el.income_amount ? el.income_amount : el.expense_amount}</span>
-            <span>{el.income_category ? el.income_category : el.expense_category}</span>
-            <span>{el.income_date ? el.income_date : el.expense_date}</span>
-            </div>)}
+        <div className='flex flex-col items-center text-xl mt-16'>
+          <h3 className='font-bold mb-6'>Recently Added</h3>
+          {AllData.map((el, i) =>{
+
+            return (i<5)?(<>{(i==0)?( <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between font-bold'>
+              <span>Category</span>
+            <span>Amount</span>
+            <span>Date</span>
+            </div> ):""}
+            <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between' key={i}>
+              <span>{el.income_category ? el.income_category : el.expense_category}</span>
+              <span>{el.income_amount ? el.income_amount : el.expense_amount}</span>
+              <span>{el.income_date ? el.income_date : el.expense_date}</span>
+            </div>
+            </>):"";
+          } )}
         </div>
-      </div>
-      <br />
-      <div>
-        <span>totals</span><br />
-        <span>totalIncomes:{totalIncomes}</span><br />
-        <span>totalExpenses:{totalExpenses}</span><br />
-        <span>totalSaving:{totalSaving}</span><br />
-        {/* {Incomes.map((el,i)=> <li key={i}>{el.income_amount}</li> )} <br />
-        {Expenses.map((el,i)=> <li key={i}>{el.expense_amount}</li> )} */}
+        <div className='flex flex-col md:text-xl absolute top-0 ml-20 sm:top-5 sm:right-10'>
+            <h3 className='font-bold text-center'>Totals</h3>
+            <span><span className='font-semibold'>Incomes:</span> <span>{totalIncomes}</span></span>
+            <span><span className='font-semibold'>Expenses:</span> <span>{totalExpenses}</span></span>
+            <span><span className='font-semibold'>Savings:</span> <span>{totalSaving}</span></span>
+          </div>
       </div>
     </div>
   )
