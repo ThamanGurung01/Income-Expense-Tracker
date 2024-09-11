@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { removeCookie } from "../services/Authentication/cookieService";
 import closeImage from "../assets/close.png";
 import { useState } from "react";
-const SideBar = () => {
+import { SidebarProps } from "./components-types";
+const SideBar:React.FC<SidebarProps> = ({isHamburger,setIsHamburger}) => {
   const navigate=useNavigate();
   const removeTokenCookie=()=>{
     removeCookie("Token");
@@ -17,6 +18,7 @@ setOption(option);
   const handleHamburgerExit=()=>{
 const sidebarHam:any=document.getElementById("sidebar-Ham");
 sidebarHam.style.opacity="0";
+setIsHamburger(false);
   }
   return (
     <div id="sidebar-Ham" className="sidebar sidebarTransition">

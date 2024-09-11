@@ -31,3 +31,7 @@ export interface ProtectedRouteProps{
   element:React.ReactElement,
   path:string,
 }
+export interface SidebarProps {
+  isHamburger: boolean;
+  setIsHamburger: React.Dispatch<React.SetStateAction<boolean>>;
+}

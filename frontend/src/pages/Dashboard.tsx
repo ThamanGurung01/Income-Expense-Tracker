@@ -7,15 +7,21 @@ import Expense from "./Expense"
 import View from "./View" 
 import UpdatePage from "./UpdatePage" 
 import { getCookie } from "../services/Authentication/cookieService" 
+import hamburger from "../assets/hamburger.png";
+import { useState } from "react"
 
 function Dashboard(){
   const location=useLocation()
   const showSideBar=!["/login","/signup"].includes(location.pathname);
   const Cookie=getCookie("Token");
-
+  const [isHamburger,setIsHamburger]=useState(false);
+  const HamburgerHandler=()=>{
+    setIsHamburger(true);
+  }
   return (
     <div className="flex bg-gray-300">
-    {showSideBar&&<SideBar/>}
+    <img className="hamburger" onClick={HamburgerHandler} src={hamburger}/>
+    {(showSideBar&&isHamburger)?<SideBar isHamburger={isHamburger} setIsHamburger={setIsHamburger} />:""}
 <Routes>
       <Route path="/" element={Cookie?<Home/>:<Navigate to={"/login"} replace />}/>
       <Route path="/income" element={Cookie?<Income/>:<Navigate to={"/login"} replace />}/>
