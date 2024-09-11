@@ -16,11 +16,10 @@ transition: opacity 0.3s ease-out;
   @apply w-5 self-end mb-1;
 }
 .hamburger{
-  @apply w-6 absolute top-12 left-5 ;
+  @apply w-6 absolute top-12 left-10 ;
 }
-
 .sidebar-option{
-  @apply border-4 w-full min-h-screen p-2;
+  @apply w-full min-h-screen p-2;
 }
 .graph-width{
 width: 45rem;
@@ -40,4 +39,13 @@ width: 45rem;
 }
 .buttonFormHover{
   @apply hover:text-black hover:bg-gray-300;
+}
+.income{
+  @apply flex flex-col p-5 mt-32 items-center;
+}
+.expense{
+  @apply flex flex-col p-5 mt-32 items-center;
+}
+.view{
+  @apply flex flex-col p-5 mt-32 items-center;
 }

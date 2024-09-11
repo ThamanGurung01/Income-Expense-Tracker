@@ -3,7 +3,7 @@ import Forms from '../components/Forms'
 
 const Expense = () => {
   return (
-    <div className='sidebar-option'>
+    <div className='sidebar-option expense'>
       <span>Expense</span>
       <Forms  value={"expense"} method={"POST"}/>
       </div>
