@@ -6,6 +6,15 @@
   user-select: none;
   -webkit-user-drag: none;
 }
+.sidebar{
+  @apply border-4 flex flex-col px-4 pt-10 absolute bg-white w-40 min-h-screen text-2xl gap-y-5;
+}
+.sidebarTransition{
+transition: opacity 0.3s ease-out;
+}
+.closeImg{
+  @apply w-5 self-end mb-1;
+}
 .sidebar-option{
   @apply border-4 w-screen min-h-screen p-2;
 }
