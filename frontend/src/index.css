@@ -7,7 +7,7 @@
   -webkit-user-drag: none;
 }
 .sidebar{
-  @apply border-4 flex flex-col px-4 pt-10 absolute bg-white w-40 min-h-screen text-2xl gap-y-5;
+  @apply border-4 flex flex-col px-4 pt-10 absolute bg-white w-40 min-h-screen text-2xl gap-y-5 z-10;
 }
 .sidebarTransition{
 transition: opacity 0.3s ease-out;

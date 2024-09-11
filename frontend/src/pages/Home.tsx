@@ -70,17 +70,18 @@ const Home = () => {
           <h3 className='font-bold mb-6'>Recently Added</h3>
           {AllData.map((el, i) =>{
 
-            return (i<5)?(<>{(i==0)?( <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between font-bold'>
+            return (i<5)?(<div key={i}>{(i==0)?( 
+            <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between font-bold'>
               <span>Category</span>
             <span>Amount</span>
             <span>Date</span>
             </div> ):""}
-            <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between' key={i}>
+            <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between'>
               <span>{el.income_category ? el.income_category : el.expense_category}</span>
               <span>{el.income_amount ? el.income_amount : el.expense_amount}</span>
               <span>{el.income_date ? el.income_date : el.expense_date}</span>
             </div>
-            </>):"";
+            </div>):"";
           } )}
         </div>
         <div className='flex flex-col md:text-xl absolute top-0 ml-20 sm:top-5 sm:right-10'>
