@@ -16,10 +16,10 @@ const SideBar:React.FC<SidebarProps> = ({setIsHamburger}) => {
 setIsHamburger(false);
   }
   return (
-    <div id="sidebar-Ham" className="sidebar sidebarTransition">
+    <div id="sidebar-Ham" className="sidebar sidebarTransition md:relative">
 <div className="flex justify-between">  
 <Link className={`${currentPath==="/"?"text-blue-700 underline":""}`} onClick={handleHamburgerExit} to="/">Home</Link>
-<img className="closeImg hover:cursor-pointer" src={closeImage} onClick={handleHamburgerExit}/>
+<img className="closeImg hover:cursor-pointer md:hidden" src={closeImage} onClick={handleHamburgerExit}/>
 </div>
       <Link className={`${currentPath==="/income"?"text-blue-700 underline":""}`} onClick={handleHamburgerExit} to="/income">Income</Link>
       <Link className={`${currentPath==="/expense"?"text-blue-700 underline":""}`} onClick={handleHamburgerExit} to="/expense">Expense</Link>
