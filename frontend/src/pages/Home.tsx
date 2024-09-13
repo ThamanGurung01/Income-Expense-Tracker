@@ -84,8 +84,8 @@ const Home = () => {
             </div>):"";
           } )}
         </div>
-        <div className='flex flex-col md:text-xl absolute top-0 ml-20 sm:top-5 sm:right-10'>
-            <h3 className='font-bold text-center'>Totals</h3>
+        <div className='flex flex-col md:text-xl absolute top-0 border-4 totalContainer sm:top-5 sm:right-10'>
+            <h3 className='font-bold'>Totals</h3>
             <span><span className='font-semibold'>Incomes:</span> <span>{totalIncomes}</span></span>
             <span><span className='font-semibold'>Expenses:</span> <span>{totalExpenses}</span></span>
             <span><span className='font-semibold'>Savings:</span> <span>{totalSaving}</span></span>

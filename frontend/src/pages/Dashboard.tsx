@@ -31,8 +31,6 @@ function Dashboard(){
     <div className="flex bg-gray-300">
     <img className="hamburger md:hidden" onClick={HamburgerHandler} src={hamburger}/>
     {(showSideBar&&isMobile)?<div className={`${isHamburger?"block":"hidden"}`}><SideBar setIsHamburger={setIsHamburger} /></div>:<SideBar setIsHamburger={setIsHamburger} />}
-<span className="ml-48">    {isHamburger?"ham":"not ham"}
-{isMobile?"mobile":"not mobile"}</span>
 <Routes>
       <Route path="/" element={Cookie?<Home/>:<Navigate to={"/login"} replace />}/>
       <Route path="/income" element={Cookie?<Income/>:<Navigate to={"/login"} replace />}/>
