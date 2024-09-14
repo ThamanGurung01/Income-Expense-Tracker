@@ -62,15 +62,20 @@ const Home = () => {
   }, [AllData]);
   return (
     <div className='sidebar-option'>
-      <div className='flex justify-around flex-col'>
-        <div className='flex-grow mt-28 md:mt-16'>
+      <div className='flex flex-col'>
+      <div className=' flex mt-7 flex-col items-center md:text-xl lg:text-2xl md:mt-10 md:flex-row md:justify-center gap-x-10'>
+            <span><span className='font-semibold'> Incomes:</span> <span>{totalIncomes}</span></span>
+            <span><span className='font-semibold'> Expenses:</span> <span>{totalExpenses}</span></span>
+            <span><span className='font-semibold'> Savings:</span> <span>{totalSaving}</span></span>
+          </div>
+        <div className='flex-grow'>
           <LineGraph lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
-        <div className='flex flex-col items-center text-xl mt-16'>
-          <h3 className='font-bold mb-6'>Recently Added</h3>
+        <div className='flex flex-col items-center text-xl mt-10'>
+          <h3 className='font-bold mb-2'>Recently Added</h3>
           {AllData.map((el, i) =>{
 
-            return (i<5)?(<div key={i}>{(i==0)?( 
+            return (i<4)?(<div key={i}>{(i==0)?( 
             <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between font-bold'>
               <span>Category</span>
             <span>Amount</span>
@@ -84,12 +89,7 @@ const Home = () => {
             </div>):"";
           } )}
         </div>
-        <div className='flex flex-col md:text-xl absolute top-0 border-4 totalContainer sm:top-5 sm:right-10'>
-            <h3 className='font-bold'>Totals</h3>
-            <span><span className='font-semibold'>Incomes:</span> <span>{totalIncomes}</span></span>
-            <span><span className='font-semibold'>Expenses:</span> <span>{totalExpenses}</span></span>
-            <span><span className='font-semibold'>Savings:</span> <span>{totalSaving}</span></span>
-          </div>
+        
       </div>
     </div>
   )
