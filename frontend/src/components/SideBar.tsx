@@ -18,12 +18,12 @@ setIsHamburger(false);
   return (
     <div id="sidebar-Ham" className="sidebar sidebarTransition md:relative">
 <div className="flex justify-between">  
-<Link className={`${currentPath==="/"?"text-blue-700 underline":""}`} onClick={handleHamburgerExit} to="/">Home</Link>
+<Link className={`${currentPath==="/"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/">Home</Link>
 <img className="closeImg hover:cursor-pointer md:hidden" src={closeImage} onClick={handleHamburgerExit}/>
 </div>
-      <Link className={`${currentPath==="/income"?"text-blue-700 underline":""}`} onClick={handleHamburgerExit} to="/income">Income</Link>
-      <Link className={`${currentPath==="/expense"?"text-blue-700 underline":""}`} onClick={handleHamburgerExit} to="/expense">Expense</Link>
-      <Link className={`${currentPath==="/view"?"text-blue-700 underline":""}`} onClick={handleHamburgerExit} to="/view">View</Link>
+      <Link className={`${currentPath==="/income"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/income">Income</Link>
+      <Link className={`${currentPath==="/expense"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/expense">Expense</Link>
+      <Link className={`${currentPath==="/view"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/view">View</Link>
       <button className="w-16" type="button" onClick={removeTokenCookie}>LogOut</button>
     </div>
   )

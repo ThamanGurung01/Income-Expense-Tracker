@@ -28,7 +28,7 @@ function Dashboard(){
     setIsHamburger(true);
   }
   return (
-    <div className="flex bg-gray-300">
+    <div className="flex bg-orange-500 text-gray-200">
     <img className="hamburger md:hidden" onClick={HamburgerHandler} src={hamburger}/>
     {(showSideBar&&isMobile)?<div className={`${isHamburger?"block":"hidden"}`}><SideBar setIsHamburger={setIsHamburger} /></div>:<SideBar setIsHamburger={setIsHamburger} />}
 <Routes>
