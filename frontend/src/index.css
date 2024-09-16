@@ -32,7 +32,7 @@
   @apply hover:text-black hover:bg-gray-300;
 }
 .view{
-  @apply flex flex-col lg:flex-row lg:justify-evenly lg:p-0 pt-20 lg:pt-32;
+  @apply flex flex-col items-center lg:items-baseline lg:flex-row lg:justify-evenly lg:p-0 pt-20 lg:pt-32;
 }
 .sidebarNav{
   @apply hover:text-green-700 font-bold;
