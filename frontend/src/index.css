@@ -26,12 +26,11 @@
 @apply px-2 border rounded-md text-black border-black mb-5 w-48 md:w-56 lg:w-64 xl:w-72;
 }
 .buttonForm{
-  @apply rounded-md bg-gray-400 text-xl text-white font-bold w-36 py-1.5 mb-3;
+  @apply rounded-md bg-gray-400 text-xl text-white font-bold w-32 py-1.5 mb-6;
 }
 .buttonFormHover{
   @apply hover:text-black hover:bg-gray-300;
 }
-
 .view{
   @apply flex flex-col lg:flex-row pt-24 items-center;
 }
@@ -42,7 +41,7 @@
   @apply flex flex-col pt-24 items-center;
 }
 .incomeExpenseForm{
-  @apply py-1.5 px-2 text-black placeholder:text-gray-400 text-lg rounded-lg
+  @apply py-1.5 px-2 text-black placeholder:text-gray-400 text-lg rounded-lg;
 }
 .tableElementBorder{
   @apply border border-gray-200;
@@ -52,6 +51,15 @@
 }
 .tableStyleRow{
  @apply px-1 sm:px-2;
+}
+.update{
+  @apply flex flex-col pt-24 items-center;
+}
+.updateButtonForm{
+  @apply rounded-md bg-red-500 text-xl text-white font-bold w-28 py-1;
+}
+.updateButtonFormHover{
+  @apply hover:text-white hover:bg-red-600;
 }
 
 /*custom css */

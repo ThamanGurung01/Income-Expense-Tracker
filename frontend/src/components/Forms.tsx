@@ -4,6 +4,7 @@ import { postService } from '../services/Api/postService';
 import {getSpecificService} from "../services/Api/getSpecificService"
 import { patchService } from '../services/Api/patchService';
 import { useNavigate } from 'react-router-dom';
+import { deleteService } from '../services/Api/deleteService';
 const Forms:React.FC<FormProps> = ({value,method,id}) => {
   const navigate=useNavigate();
   const [amount,setAmount]=useState<Number>(1000);
@@ -135,6 +136,18 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
     setMessage((c)=>({...c,error:Number(amount)>=100?"Input all fields":"amount must be greater than 100"}));
   }
 }
+const handleDelete = async() => {
+  const confirmed = window.confirm('Are you sure you want to delete this item?');
+  if (confirmed) {
+    try{
+      await deleteService(value??"",id??"");
+      navigate("/view");
+    }catch(error){
+      console.log("error");
+    }
+  } else {
+  }
+};
   return (
     <div className='w-64 flex flex-col text-xl placeholder:text-xl' id="form">
       <span className='text-red-500'>{message.error}</span>
@@ -147,8 +160,9 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
       <textarea className='incomeExpenseForm' placeholder='Description' name={`${value}_description`} onChange={handleDescription} value={descriptions}></textarea><br />
       <input type="date" className='incomeExpenseForm' name={`${value}_date`}
       onChange={handleDate} value={date} required/><br />
-      <button onClick={handleSubmit} className="buttonForm buttonFormHover ml-14" type='submit'>Submit</button>
-      <span className='text-green-500'>{message.msg}</span>
+      <button onClick={handleSubmit} className="buttonForm buttonFormHover ml-14 sm:ml-16" type='submit'>{method=="PATCH"?"Update":"Submit"}</button><span className='text-green-500'>{message.msg}</span>
+      {method=="PATCH"?<button className='updateButtonForm updateButtonFormHover ml-16 sm:ml-20' onClick={handleDelete}>Delete</button>:""} 
+   
     </div>
   )
 }
