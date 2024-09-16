@@ -34,22 +34,19 @@
 .buttonFormHover{
   @apply hover:text-black hover:bg-gray-300;
 }
-.income{
-  @apply flex flex-col p-5 mt-32 items-center;
-}
-.expense{
-  @apply flex flex-col p-5 mt-32 items-center;
-}
+
 .view{
-  @apply flex flex-col p-5 mt-32 items-center;
+  @apply flex flex-col pt-24 text-xl items-center;
 }
 .sidebarNav{
   @apply hover:text-green-700 font-bold;
 }
+.incomeExpense{
+  @apply flex flex-col pt-24 items-center;
+}
 .incomeExpenseForm{
   @apply py-1.5 px-2 text-black placeholder:text-gray-400 text-lg rounded-lg
 }
-
 
 /*custom css */
 

@@ -22,7 +22,7 @@ setIsHamburger(false);
       <Link className={`sidebarNav ${currentPath==="/income"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/income">Income</Link>
       <Link className={`sidebarNav ${currentPath==="/expense"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/expense">Expense</Link>
       <Link className={`sidebarNav ${currentPath==="/view"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/view">View</Link>
-      <button className={`w-16 font-bold hover:text-red-600 ${currentPath==="/expense"?"text-red-300 underline":""}`} type="button" onClick={removeTokenCookie}>LogOut</button>
+      <button className={`w-16 font-bold hover:text-red-600 `} type="button" onClick={removeTokenCookie}>LogOut</button>
     </div>
   )
 }
