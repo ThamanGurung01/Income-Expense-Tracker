@@ -6,7 +6,6 @@ const View:React.FC = () => {
 
   return (
     <div className='sidebar-option view'>
-      <span>View</span>
       <div>
         <ViewTable value="income"/>
       </div>
