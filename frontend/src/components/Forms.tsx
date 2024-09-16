@@ -136,18 +136,18 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
   }
 }
   return (
-    <div className='w-64 flex flex-col' id="form">
+    <div className='w-64 flex flex-col text-xl placeholder:text-xl' id="form">
       <span className='text-red-500'>{message.error}</span>
-      <input type="number" name={`${value}_amount`} min={1} onChange={handleAmount} value={amount?.toString()} required/><br />
-      <select name={`${value}_category`} value={category} onChange={handleCategory} required>
+      <input type="number" className='incomeExpenseForm' name={`${value}_amount`} min={1} onChange={handleAmount} value={amount?.toString()} required/><br />
+      <select className='incomeExpenseForm' name={`${value}_category`} value={category} onChange={handleCategory} required>
       {value==="expense"?(<><option value="Tax">Tax</option>
         <option value="Rent">Rent</option></>):(<><option value="Salary">Salary</option>
-          <option value="Parttime">Parttime</option></>)}
+          <option value="Parttime">PartTime</option></>)}
       </select><br />
-      <textarea className='' name={`${value}_description`} onChange={handleDescription} value={descriptions}></textarea><br />
-      <input type="date" name={`${value}_date`}
+      <textarea className='incomeExpenseForm' placeholder='Description' name={`${value}_description`} onChange={handleDescription} value={descriptions}></textarea><br />
+      <input type="date" className='incomeExpenseForm' name={`${value}_date`}
       onChange={handleDate} value={date} required/><br />
-      <button onClick={handleSubmit} type='submit'>Submit</button>
+      <button onClick={handleSubmit} className="buttonForm buttonFormHover ml-14" type='submit'>Submit</button>
       <span className='text-green-500'>{message.msg}</span>
     </div>
   )

@@ -4,7 +4,7 @@ import Forms from '../components/Forms'
 const Income = () => {
   return (
     <div className='sidebar-option income'>
-      <span>Income</span>
+      <span className='text-4xl font-bold mb-5'>Income</span>
       <Forms value={"income"} method={"POST"}/>
     </div>
   )
