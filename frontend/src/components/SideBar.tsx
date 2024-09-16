@@ -17,14 +17,12 @@ setIsHamburger(false);
   }
   return (
     <div id="sidebar-Ham" className="sidebar sidebarTransition md:relative">
-<div className="flex justify-between">  
-<Link className={`${currentPath==="/"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/">Home</Link>
 <img className="closeImg hover:cursor-pointer md:hidden" src={closeImage} onClick={handleHamburgerExit}/>
-</div>
-      <Link className={`${currentPath==="/income"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/income">Income</Link>
-      <Link className={`${currentPath==="/expense"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/expense">Expense</Link>
-      <Link className={`${currentPath==="/view"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/view">View</Link>
-      <button className="w-16" type="button" onClick={removeTokenCookie}>LogOut</button>
+<Link className={`sidebarNav ${currentPath==="/"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/">Home</Link>
+      <Link className={`sidebarNav ${currentPath==="/income"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/income">Income</Link>
+      <Link className={`sidebarNav ${currentPath==="/expense"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/expense">Expense</Link>
+      <Link className={`sidebarNav ${currentPath==="/view"?"text-green-300 underline":""}`} onClick={handleHamburgerExit} to="/view">View</Link>
+      <button className={`w-16 font-bold hover:text-red-600 ${currentPath==="/expense"?"text-red-300 underline":""}`} type="button" onClick={removeTokenCookie}>LogOut</button>
     </div>
   )
 }

@@ -42,7 +42,9 @@
 .view{
   @apply flex flex-col p-5 mt-32 items-center;
 }
-
+.sidebarNav{
+  @apply hover:text-green-700 font-bold;
+}
 
 
 
