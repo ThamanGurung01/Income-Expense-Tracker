@@ -25,7 +25,7 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
   useEffect(()=>{getRequest();},[value]);
   return (
     <div className=''>
-      <legend className='text-center mt-5 pb-5 text-2xl font-bold'>{value.toUpperCase()}</legend>
+      <legend className='text-center mt-5 pb-5 text-2xl text-white font-bold'>{value.toUpperCase()}</legend>
       <table className='table-auto tableStyle border-collapse border border-red-600'>
     <thead>
 <tr>

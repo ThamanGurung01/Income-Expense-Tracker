@@ -10,7 +10,8 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
   const [amount,setAmount]=useState<Number>(1000);
   const [category,setCategory]=useState<string>(value==="expense"?"Tax":"Salary");
   const [descriptions,setDescriptions]=useState<string>("");
-  const [date,setDate]=useState<string>("");
+  const today = new Date().toISOString().split('T')[0];
+  const [date,setDate]=useState<string>(today);
   const [message,setMessage]=useState<{msg:string,error:string}>({msg:"",
     error:"",
   });
