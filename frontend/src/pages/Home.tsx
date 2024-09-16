@@ -72,17 +72,18 @@ const Home = () => {
         <div className='flex-grow'>
           <LineGraph lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
-        <div className='flex flex-col items-center text-xl mt-10'>
+        <div className='flex w-full flex-col items-center text-xl mt-10'>
           <h3 className='font-bold mb-2'>Recently Added</h3>
           {AllData.map((el, i) =>{
 
-            return (i<3)?(<div key={i}>{(i==0)?( 
+            return (i<3)?(<div key={i}>
+              {/* {(i==0)?( 
             <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 text-gray-100 sm:gap-x-4 sm:text-xl justify-between font-bold'>
               <span>Category</span>
             <span>Amount</span>
             <span>Date</span>
-            </div> ):""}
-            <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between'>
+            </div> ):""} */}
+            <div className='flex text-lg gap-x-2 w-60 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between'>
               <span>{el.income_category ? el.income_category : el.expense_category}</span>
               <span>{el.income_amount ? el.income_amount : el.expense_amount}</span>
               <span>{el.income_date ? el.income_date : el.expense_date}</span>
