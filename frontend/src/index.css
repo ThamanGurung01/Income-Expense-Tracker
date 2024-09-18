@@ -23,7 +23,7 @@
   @apply w-full flex flex-col pt-36 items-center text-2xl min-h-svh p-5 bg-orange-500 text-white;
 }
 .inputForm{
-@apply px-2 border rounded-md text-black border-black mb-5 w-48 md:w-56 lg:w-64 xl:w-72;
+@apply px-2 border rounded-md text-black border-black mb-5 md:mb-10 md:py-1.5 w-48 md:w-56 lg:w-64 xl:w-72;
 }
 .buttonForm{
   @apply rounded-md bg-gray-400 text-xl text-white font-bold w-32 py-1.5 mb-6;

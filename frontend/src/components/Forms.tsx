@@ -159,7 +159,7 @@ const handleDelete = async() => {
           <option value="Parttime">PartTime</option></>)}
       </select><br />
       <textarea className='incomeExpenseForm' placeholder='Description' name={`${value}_description`} onChange={handleDescription} value={descriptions}></textarea><br />
-      <input type="date" className='py-1.5 px-2 text-black text-lg rounded-lg' name={`${value}_date`}
+      <input type="date" className='incomeExpenseForm' name={`${value}_date`}
       onChange={handleDate} value={date} required/><br />
       <button onClick={handleSubmit} className="buttonForm buttonFormHover ml-14 sm:ml-16" type='submit'>{method=="PATCH"?"Update":"Submit"}</button><span className='text-green-500'>{message.msg}</span>
       {method=="PATCH"?<button className='updateButtonForm updateButtonFormHover ml-16 sm:ml-20' onClick={handleDelete}>Delete</button>:""} 

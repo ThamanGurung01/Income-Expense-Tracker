@@ -14,9 +14,9 @@ const Login = () => {
   return (
     <div className='loginSignup'>
 <LoginSignupForm formType="login"/>
-<div className='text-xs mb-2'>
+<div className='text-sm mb-2'>
   <span>Don't have an account? </span>
-<Link className='text-base text-blue-900 hover:text-green-500' to={"/signup"}>Signup</Link>
+<Link className='text-base text-cyan-400 hover:text-green-500' to={"/signup"}>Signup</Link>
 </div>
     </div>
   )
