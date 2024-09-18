@@ -8,7 +8,7 @@ import { deleteService } from '../services/Api/deleteService';
 const Forms:React.FC<FormProps> = ({value,method,id}) => {
   const navigate=useNavigate();
   const [amount,setAmount]=useState<Number>(1000);
-  const [category,setCategory]=useState<string>(value==="expense"?"Tax":"Salary");
+  const [category,setCategory]=useState<string>(value==="expense"?"Rent":"Salary");
   const [descriptions,setDescriptions]=useState<string>("");
   const today = new Date().toISOString().split('T')[0];
   const [date,setDate]=useState<string>(today);
@@ -61,7 +61,6 @@ const Forms:React.FC<FormProps> = ({value,method,id}) => {
         setAmount(1000);
         setCategory("Salary");
         setDescriptions("");
-        setDate("");
       }
       setTimeout(()=>{
         setMessage({msg:"",
@@ -151,17 +150,44 @@ const handleDelete = async() => {
 };
   return (
     <div className='w-64 flex flex-col text-xl placeholder:text-xl' id="form">
-      <span className='text-red-500'>{message.error}</span>
+      {message.error?(<span className='text-rose-700 font-bold'>{message.error.toUpperCase()}!</span>):""}
+      {message.msg?(<span className='text-green-400 text-lg font-bold'>{message.msg.toUpperCase()}</span>):""}
       <input type="number" className='incomeExpenseForm' name={`${value}_amount`} min={1} onChange={handleAmount} value={amount?.toString()} required/><br />
       <select className='incomeExpenseForm' name={`${value}_category`} value={category} onChange={handleCategory} required>
-      {value==="expense"?(<><option value="Tax">Tax</option>
-        <option value="Rent">Rent</option></>):(<><option value="Salary">Salary</option>
-          <option value="Parttime">PartTime</option></>)}
+      {value==="expense"?(<>
+      <option value="Rent">Rent</option>
+      <option value="Utilities">Utilities</option>
+      <option value="Dining Out">Dining Out</option>
+      <option value="Transportation">Transportation</option>
+      <option value="Insurance">Insurance</option>
+      <option value="Loan Payments">Loan Payments</option>
+      <option value="Subscriptions">Subscriptions</option>
+      <option value="Entertainment">Entertainment</option>
+      <option value="Travel">Travel</option>
+      <option value="Personal Care">Personal Care</option>
+      <option value="Clothing">Clothing</option>
+      <option value="Tax">Tax</option>
+        </>):(<>
+        <option value="Salary">Salary</option>
+        <option value="Parttime">PartTime</option>
+        <option value="Freelance">Freelance</option>
+        <option value="Interest">Interest</option>
+        <option value="Dividends">Dividends</option>
+        <option value="Rental Income">Rental Income</option>
+        <option value="Gifts">Gifts</option>
+        <option value="Investment Income">Investment Income</option>
+        <option value="Refunds/Reimbursements">Refunds/Reimbursements</option>
+        <option value="Grants">Grants</option>
+        <option value="Royalties">Royalties</option>
+        <option value="Miscellaneous Income">Miscellaneous Income</option>
+          </>
+          )}
       </select><br />
       <textarea className='incomeExpenseForm' placeholder='Description' name={`${value}_description`} onChange={handleDescription} value={descriptions}></textarea><br />
       <input type="date" className='incomeExpenseForm' name={`${value}_date`}
-      onChange={handleDate} value={date} required/><br />
-      <button onClick={handleSubmit} className="buttonForm buttonFormHover ml-14 sm:ml-16" type='submit'>{method=="PATCH"?"Update":"Submit"}</button><span className='text-green-500'>{message.msg}</span>
+      onChange={handleDate} value={date} required/>
+      
+      <button onClick={handleSubmit} className="buttonForm buttonFormHover mt-8 ml-14 sm:ml-16" type='submit'>{method=="PATCH"?"Update":"Submit"}</button>
       {method=="PATCH"?<button className='updateButtonForm updateButtonFormHover ml-16 sm:ml-20' onClick={handleDelete}>Delete</button>:""} 
    
     </div>

@@ -105,11 +105,11 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
     <div className='flex flex-col items-center text-xl sm:text-2xl'>
 <span className='mt-5 mb-5 font-bold text-lg sm:text-xl md:text-2xl lg:text-4xl lg:mb-10'>Income Expense Tracker</span>
       {response.error ? (<span className='text-rose-700 font-bold'>{(response.error).toUpperCase()}!</span>) : ""}
+      {response.msg ? (<span className='text-green-400 font-bold'>{(response.msg).toUpperCase()}</span>) : ""}
       {formType === "signup" ? (<input className='inputForm' type="text" placeholder='Name' onChange={(e) => handleName(e)} value={userName} />) : ""}
       <input className='inputForm' type="email" placeholder='Email' onChange={(e) => handleEmail(e)} value={email} />
       <input className='inputForm' type="password" placeholder='Password' onChange={(e) => handlePassword(e)} value={password} />
       <button className='buttonForm buttonFormHover' type='button' onClick={handleSubmit}>{formType === "signup" ? "Sign Up" : "Log In"} </button>
-      {response.msg ? (<span className='text-green-400'>{(response.msg).toUpperCase()}</span>) : ""}
     </div>
   )
 }
