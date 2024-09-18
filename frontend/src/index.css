@@ -53,7 +53,7 @@
  @apply px-1 sm:px-2;
 }
 .tableRow{
-  @apply hover:bg-green-800;
+  @apply hover:bg-green-800 hover:text-white;
 }
 .update{
   @apply flex flex-col pt-24 items-center;
@@ -64,6 +64,16 @@
 .updateButtonFormHover{
   @apply hover:text-white hover:bg-red-600;
 }
+
+
+
+table th{
+  @apply bg-gray-800 text-white;
+}
+table tr{
+  @apply bg-gray-400 text-black;
+}
+
 
 /*custom css */
 
