@@ -74,22 +74,43 @@ const Home = () => {
         </div>
         <div className='flex w-full flex-col items-center text-xl mt-10'>
           <h3 className='font-bold mb-2'>Recently Added</h3>
+          <table className='table-auto tableStyle border-collapse border border-red-600'>
+                <tr>
+                  <th className='tableElementBorder tableStyleRow'>Category</th>
+                  <th className='tableElementBorder tableStyleRow'>Amount</th>
+                  <th className='tableElementBorder tableStyleRow'>Date</th>
+                  </tr>
           {AllData.map((el, i) =>{
 
-            return (i<3)?(<div key={i}>
-              {/* {(i==0)?( 
-            <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 text-gray-100 sm:gap-x-4 sm:text-xl justify-between font-bold'>
-              <span>Category</span>
-            <span>Amount</span>
-            <span>Date</span>
-            </div> ):""} */}
-            <div className='flex text-lg gap-x-2 w-60 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between'>
-              <span>{el.income_category ? el.income_category : el.expense_category}</span>
-              <span>{el.income_amount ? el.income_amount : el.expense_amount}</span>
-              <span>{el.income_date ? el.income_date : el.expense_date}</span>
-            </div>
-            </div>):"";
-          } )}
+            return (
+
+                    (i<3)?(
+                      <tr>
+                      <td className='tableElementBorder tableStyleRow'>{el.income_category ? el.income_category : el.expense_category}</td>
+                      <td className='tableElementBorder tableStyleRow'>{el.income_amount ? el.income_amount : el.expense_amount}</td>
+                      <td className='tableElementBorder tableStyleRow'>{el.income_date ? el.income_date : el.expense_date}</td>
+                  </tr>
+                    ):""
+            );
+         
+            // (i<3)?(
+              // <div key={i}>
+              //   {(i==0)?( 
+              // <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 text-gray-100 sm:gap-x-4 sm:text-xl justify-between font-bold'>
+              //   <span>Category</span>
+              // <span>Amount</span>
+              // <span>Date</span>
+              // </div> ):""}
+              // <div className='flex text-lg gap-x-2 w-60 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between'>
+              //   <span>{el.income_category ? el.income_category : el.expense_category}</span>
+              //   <span>{el.income_amount ? el.income_amount : el.expense_amount}</span>
+              //   <span>{el.income_date ? el.income_date : el.expense_date}</span>
+              // </div>
+              // </div>
+              // ):""
+         } )}
+            </table>
+
         </div>
         
       </div>
