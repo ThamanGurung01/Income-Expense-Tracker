@@ -6,7 +6,7 @@ async function handleGetAllExpenses(req,res){
     const userID=req.user.id;
 if(!userID) return res.status(400).json({error:"login token error"});
     const allExpenses=await EXPENSE.find({author:userID}).sort({createdAt:-1}).populate("author");
-    if(allExpenses.length===0) return res.status(200).json([{}]);
+    if(allExpenses.length===0) return res.status(200).json({error:"no data found"});
   return res.json(allExpenses); 
   }catch(error){
     res.status(500).json({error:"server error"});

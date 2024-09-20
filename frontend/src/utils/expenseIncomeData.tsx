@@ -2,10 +2,17 @@
 import { getService } from "../services/Api/getService";
 
 export const expenseIncomeData = async(what:string) => {
-  const Incomes=await getService("income");
+  let Incomes=await getService("income");
 
   let Expenses=await getService("expense");
-  if(Expenses.error) Expenses=[];
+  console.log(Expenses.error);
+if(!(Incomes.error)||!(Expenses.error)){
+  if(Incomes.error){
+    Incomes=[{}];
+  }
+  if(Expenses.error){
+    Expenses=[{}];
+  }
   const allData=[...Incomes,...Expenses].sort((a,b)=>{
     return (new Date(b.createdAt).getTime()-new Date(a.createdAt).getTime());
   });
@@ -16,4 +23,8 @@ export const expenseIncomeData = async(what:string) => {
   }else{
     return allData;
   }
+}else{
+  return [];
+}
+
 }

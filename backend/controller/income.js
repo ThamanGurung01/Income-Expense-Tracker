@@ -6,7 +6,7 @@ async function handleGetAllIncomes(req,res){
 const userID=req.user.id;
 if(!userID) return res.status(400).json({error:"login token error"});
 const allIncomes=await INCOME.find({author:userID}).sort({createdAt:-1}).populate("author");
-    if(allIncomes.length===0) return res.status(200).json([{}]);
+    if(allIncomes.length===0) return res.status(200).json({error:"no data found"});
   return res.status(200).json(allIncomes); 
   }catch(error){
     res.status(500).json({error:"Server error"});

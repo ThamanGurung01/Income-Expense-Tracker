@@ -3,33 +3,9 @@ import { expenseIncomeData } from '../utils/expenseIncomeData'
 import LineGraph from '../components/LineGraph';
 
 const Home = () => {
-  const [AllData, setAllData] = useState<Array<{
-    income_amount: number,
-    income_category?: string,
-    income_description?: string,
-    income_date?: string,
-
-    expense_amount: number,
-    expense_category?: string,
-    expense_description?: string,
-    expense_date?: string,
-
-  }>>([{
-    income_amount: 0,
-    expense_amount: 0,
-  }]);
-  const [Incomes, setIncomes] = useState([{
-    income_amount: 0,
-    income_category: "",
-    income_description: "",
-    income_date: "",
-  }]);
-  const [Expenses, setExpenses] = useState([{
-    expense_amount: 0,
-    expense_category: "",
-    expense_description: "",
-    expense_date: "",
-  }]);
+  const [AllData, setAllData] = useState<Array<any>>([]);
+  const [Incomes, setIncomes] = useState([]);
+  const [Expenses, setExpenses] = useState([]);
   const [totalIncomes, setTotalIncomes] = useState<number>(0);
   const [totalExpenses, setTotalExpenses] = useState<number>(0);
   const [totalSaving, setTotalSaving] = useState<number>(0);
@@ -40,6 +16,7 @@ const Home = () => {
   }
   useEffect(() => {
     handleData();
+    console.log(AllData);
   }, []);
 
   useEffect(() => {
@@ -64,55 +41,46 @@ const Home = () => {
     <div className='sidebar-option'>
       <div className='flex flex-col'>
         <h1 className='text-2xl text-center font-bold mt-8 md:text-4xl text-white md:mt-10' >Dashboard</h1>
-      <div className=' flex mt-4 flex-col text-gray-100 items-center md:text-xl lg:text-2xl md:mt-7 md:flex-row md:justify-center gap-x-10 md:gap-x-20'>
-            <span><span className='font-semibold'> Incomes:</span> <span>{totalIncomes}</span></span>
-            <span><span className='font-semibold'> Expenses:</span> <span>{totalExpenses}</span></span>
-            <span><span className='font-semibold'> Savings:</span> <span>{totalSaving}</span></span>
-          </div>
+        <div className=' flex mt-4 flex-col text-gray-100 items-center md:text-xl lg:text-2xl md:mt-7 md:flex-row md:justify-center gap-x-10 md:gap-x-20'>
+          <span><span className='font-semibold'> Incomes:</span> <span>{totalIncomes}</span></span>
+          <span><span className='font-semibold'> Expenses:</span> <span>{totalExpenses}</span></span>
+          <span><span className='font-semibold'> Savings:</span> <span>{totalSaving}</span></span>
+        </div>
         <div className='flex-grow'>
           <LineGraph lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
         <div className='flex w-full flex-col items-center text-xl mt-10'>
           <h3 className='font-bold mb-2'>Recently Added</h3>
           <table className='table-auto tableStyle border-collapse border border-red-600'>
-                <tr>
-                  <th className='tableElementBorder tableStyleRow'>Category</th>
-                  <th className='tableElementBorder tableStyleRow'>Amount</th>
-                  <th className='tableElementBorder tableStyleRow'>Date</th>
-                  </tr>
-          {AllData.map((el, i) =>{
-
-            return (
-
-                    (i<3)?(
-                      <tr>
+            <thead>
+            <tr>
+              <th className='tableElementBorder tableStyleRow'>Category</th>
+              <th className='tableElementBorder tableStyleRow'>Amount</th>
+              <th className='tableElementBorder tableStyleRow'>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            {
+              AllData.length!==0?
+              (AllData.map((el, i) => {
+                return (
+                  (i < 3) ? (
+                    (el.income_category)?
+                    (<tr key={i}>
                       <td className='tableElementBorder tableStyleRow'>{el.income_category ? el.income_category : el.expense_category}</td>
                       <td className='tableElementBorder tableStyleRow'>{el.income_amount ? el.income_amount : el.expense_amount}</td>
                       <td className='tableElementBorder tableStyleRow'>{el.income_date ? el.income_date : el.expense_date}</td>
-                  </tr>
+                    </tr>):""
                     ):""
-            );
-         
-            // (i<3)?(
-              // <div key={i}>
-              //   {(i==0)?( 
-              // <div className='flex text-lg gap-x-2 w-56 sm:w-72 sm:py-3 text-gray-100 sm:gap-x-4 sm:text-xl justify-between font-bold'>
-              //   <span>Category</span>
-              // <span>Amount</span>
-              // <span>Date</span>
-              // </div> ):""}
-              // <div className='flex text-lg gap-x-2 w-60 sm:w-72 sm:py-3 sm:gap-x-4 sm:text-xl justify-between'>
-              //   <span>{el.income_category ? el.income_category : el.expense_category}</span>
-              //   <span>{el.income_amount ? el.income_amount : el.expense_amount}</span>
-              //   <span>{el.income_date ? el.income_date : el.expense_date}</span>
-              // </div>
-              // </div>
-              // ):""
-         } )}
-            </table>
+                );
+              })):
+            ( <tr><td className='tableElementBorder text-center' colSpan={4}>No data found</td></tr> )
+            }
+            </tbody>
+          </table>
 
         </div>
-        
+
       </div>
     </div>
   )

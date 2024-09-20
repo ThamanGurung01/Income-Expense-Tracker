@@ -35,13 +35,15 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
 </tr>
     </thead>
     <tbody>
-{viewData.map((el,i)=> (el[value+"_category"])?(<tr className='tableRow' onClick={()=>{handleUpdate(el["_id"],value)}} key={i}>
+{
+(viewData.length!==0)?(viewData.map((el,i)=>(<tr className='tableRow' onClick={()=>{handleUpdate(el["_id"],value)}} key={i}>
 <td className='tableElementBorder tableStyleRow' title={el[value+"_description"]}>{el[value+"_amount"]}</td>
 <td className='tableElementBorder tableStyleRow' title={el[value+"_description"]}>{el[value+"_category"]}</td>
 <td className='tableElementBorder tableStyleRow' title={el[value+"_description"]}>{el[value+"_date"]}</td>
-
-</tr>):( <tr key={i}><td className='tableElementBorder text-center' colSpan={4}>No data found</td></tr> )
- )}
+</tr>)
+ )
+ ):( <tr><td className='tableElementBorder text-center' colSpan={4}>No data found</td></tr> )
+ }
     </tbody>
   </table>
     </div>
