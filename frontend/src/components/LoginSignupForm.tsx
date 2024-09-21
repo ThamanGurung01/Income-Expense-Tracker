@@ -14,6 +14,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
     msg: "",
     error: "",
   });
+  const [isProcessing,setIsProcessing]=useState(false);
   const emailPattern = /^[A-Za-z]+[A-Za-z0-9]*@gmail.com$/;
 
   const handleName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +27,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
     setPassword(e.target.value);
   }
   const handleSubmit = async () => {
+    setIsProcessing(true);
     if (formType === "signup") {
       if (userName === "" || email === "" || password === "") {
         setResponse({ msg: "", error: "Input all fields" });
@@ -42,7 +44,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
             setUserName("");
             setEmail("");
             setPassword("");
-
+            setIsProcessing(false);
             setTimeout(() => {
               setResponse({
                 msg: "",
@@ -82,6 +84,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
             }
             setEmail("");
             setPassword("");
+            setIsProcessing(false);
             setTimeout(() => {
               setResponse({
                 msg: "",
@@ -109,7 +112,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
       {formType === "signup" ? (<input className='inputForm' type="text" placeholder='Name' onChange={(e) => handleName(e)} value={userName} />) : ""}
       <input className='inputForm' type="email" placeholder='Email' onChange={(e) => handleEmail(e)} value={email} />
       <input className='inputForm' type="password" placeholder='Password' onChange={(e) => handlePassword(e)} value={password} />
-      <button className='buttonForm buttonFormHover' type='button' onClick={handleSubmit}>{formType === "signup" ? "Sign Up" : "Log In"} </button>
+      <button className='buttonForm buttonFormHover' disabled={isProcessing} type='button' onClick={handleSubmit}>{formType === "signup" ? "Sign Up" : "Log In"} </button>
     </div>
   )
 }
