@@ -44,13 +44,12 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
             setUserName("");
             setEmail("");
             setPassword("");
-            setIsProcessing(false);
             setTimeout(() => {
               setResponse({
                 msg: "",
                 error: "",
               });
-
+              setIsProcessing(false);
             }, 2000);
             navigate("/login",{replace:true});
           } else {
@@ -84,13 +83,13 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
             }
             setEmail("");
             setPassword("");
-            setIsProcessing(false);
             setTimeout(() => {
               setResponse({
                 msg: "",
                 error: "",
               });
-              window.location.reload();
+            setIsProcessing(false);
+            window.location.reload();
             }, 2000);
 
           } else {
