@@ -8,8 +8,8 @@ import { useNavigate} from 'react-router-dom';
 const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
   const navigate=useNavigate();
   const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("thaman@gmail.com");
+  const [password, setPassword] = useState("thamangrg");
   const [response, setResponse] = useState<{ msg: string, error: string }>({
     msg: "",
     error: "",
