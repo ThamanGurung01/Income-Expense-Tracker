@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { getCookie } from "./services/Authentication/cookieService";
+import Profile from "./pages/Profile";
 
 
 
@@ -14,6 +15,7 @@ return (
   <Route path="*" element={Cookie?<Dashboard/>:<Navigate to={"/login"} replace />}/>
   <Route path="/login" element={<Login/>}/>
   <Route path="/signup" element={<Signup/>}/>
+  <Route path="/profile" element={<Profile/>}/>
 </Routes>
 );
 

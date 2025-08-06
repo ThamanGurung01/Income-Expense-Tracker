@@ -8,10 +8,10 @@
   font-family: serif;
 }
 .sidebar{
-  @apply flex flex-col w-[13%] p-7 items-center bg-white absolute min-h-screen text-lg gap-y-7 z-10 md:gap-y-10 md:text-lg;
+  @apply flex flex-col w-[200px] pt-10 pb-5 justify-between items-center bg-white absolute min-h-screen text-lg z-10 md:text-lg;
 }
 .closeImg{
-  @apply w-5 self-end mb-1;
+  @apply w-5 self-center mb-1;
 }
 .hamburger{
   @apply w-8 absolute top-14 left-16 ;
@@ -35,7 +35,7 @@
   @apply flex flex-col items-center lg:items-baseline lg:flex-row lg:justify-evenly lg:p-0 pt-20 lg:pt-32;
 }
 .sidebarNav{
-  @apply w-full flex px-7 items-center py-2 rounded-lg gap-3;
+  @apply w-full flex px-10 md:px-8 2xl:px-8 items-center py-2 rounded-lg gap-3 ;
 }
 .sidebarNavSelected{
   @apply bg-blue-600 text-white;

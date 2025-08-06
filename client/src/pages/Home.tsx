@@ -19,24 +19,25 @@ const Home = () => {
     console.log(AllData);
   }, []);
 
-  useEffect(() => {
-    let incomes = 0;
-    let expenses = 0;
-    let savings = 0;
+useEffect(() => {
+  let incomes = 0;
+  let expenses = 0;
+  let savings = 0;
 
-    AllData.forEach(el => {
-      if (el.expense_amount > 0) {
-        expenses += Number(el.expense_amount);
-        savings -= Number(el.expense_amount);
-      } else if (el.income_amount > 0) {
-        incomes += Number(el.income_amount);
-        savings += Number(el.income_amount);
-      }
-      setTotalIncomes(incomes);
-      setTotalExpenses(expenses);
-      setTotalSaving(savings);
-    })
-  }, [AllData]);
+  AllData.forEach(el => {
+    if (el.expense_amount > 0) {
+      expenses += Number(el.expense_amount);
+      savings -= Number(el.expense_amount);
+    } else if (el.income_amount > 0) {
+      incomes += Number(el.income_amount);
+      savings += Number(el.income_amount);
+    }
+  });
+
+  setTotalIncomes(incomes);
+  setTotalExpenses(expenses);
+  setTotalSaving(savings);
+}, [AllData]);
   return (
     <div className='sidebar-option'>
       <div className='flex flex-col'>
@@ -47,7 +48,7 @@ const Home = () => {
           <span><span className='font-semibold'> Savings:</span> <span>{totalSaving}</span></span>
         </div>
         <div className='flex-grow'>
-          <LineGraph lineIncomes={Incomes} lineExpenses={Expenses} />
+          <LineGraph key={Incomes.length + Expenses.length} lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
         <div className='flex w-full flex-col items-center text-xl mt-10'>
           <h3 className='font-bold mb-2'>Recently Added</h3>

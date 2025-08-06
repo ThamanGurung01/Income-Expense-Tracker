@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { LineGraphProps } from "./components-types";
 import { Line } from "react-chartjs-2";
 import {
@@ -23,6 +23,8 @@ ChartJS.register(
 );
 
 const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
+  const chartRef = useRef<any>(null);
+
   const IncomeAmount: number[] = [];
   const IncomeDate: string[] = [];
 
@@ -40,8 +42,15 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
   });
 
   const allDates = ([...new Set([...IncomeDate, ...ExpenseDate])]).sort();
-  const incomeData = allDates.map(date => IncomeAmount[IncomeDate.indexOf(date)] || 0);
-  const expenseData = allDates.map(date => ExpenseAmount[ExpenseDate.indexOf(date)] || 0);
+  const incomeData = allDates.map(date => {
+    const idx = IncomeDate.indexOf(date);
+    return idx !== -1 ? IncomeAmount[idx] : 0;
+  });
+
+  const expenseData = allDates.map(date => {
+    const idx = ExpenseDate.indexOf(date);
+    return idx !== -1 ? ExpenseAmount[idx] : 0;
+  });
 
   const LineData = {
     labels: allDates,
@@ -68,6 +77,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    resizeDelay: 100,
     plugins: {
       legend: {
         labels: {
@@ -76,14 +86,12 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
           },
         },
         position: "top" as const,
-
       },
       title: {
         display: true,
         text: "Line Chart",
-
         padding: 10,
-        font: { size: 19, },
+        font: { size: 19 },
       },
     },
     scales: {
@@ -92,31 +100,35 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
           autoSkip: true,
           maxRotation: 0,
           minRotation: 0,
-          font: {
-            size: 15,
-          }
+          font: { size: 15 }
         },
-        grid:{
-        },
+        grid: {},
       },
       y: {
         ticks: {
           autoSkip: true,
           maxRotation: 0,
           minRotation: 0,
-          font: {
-            size: 15,
-          }
+          font: { size: 15 }
         },
-        grid:{
-                  },
+        grid: {},
       },
     },
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (chartRef.current) {
+        chartRef.current.resize();
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="w-full mt-5 min-h-56 sm:min-h-64 sm:w-auto md:min-h-72 lg:min-h-96">
-      <Line options={options} data={LineData} />
+      <Line ref={chartRef} options={options} data={LineData} />
     </div>
   );
 };

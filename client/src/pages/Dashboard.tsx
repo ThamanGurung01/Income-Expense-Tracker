@@ -30,7 +30,7 @@ function Dashboard(){
     <div className="flex">
     <Menu className={`hamburger md:hidden ${isHamburger?'hidden':''}`} onClick={HamburgerHandler}/>
     {(showSideBar&&isMobile)?<div className={`${isHamburger?"block":"hidden"}`}><SideBar setIsHamburger={setIsHamburger} /></div>:<SideBar setIsHamburger={setIsHamburger} />}
-<Routes>
+      <Routes>
       <Route path="/" element={Cookie?<Home/>:<Navigate to={"/login"} replace />}/>
       <Route path="/income" element={Cookie?<Income/>:<Navigate to={"/login"} replace />}/>
       <Route path="/expense" element={Cookie?<Expense/>:<Navigate to={"/login"} replace />}/>
