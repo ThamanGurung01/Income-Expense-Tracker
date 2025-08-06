@@ -3,8 +3,8 @@ export const cookieService = async(token:string) => {
 Cookies.set("Token",token,{
   expires: 60,
     path: '/',
-    sameSite: 'None',
-    secure: true
+    sameSite: 'Lax',
+    secure: false
 })
 }
 export const getCookie=(key:string)=>{

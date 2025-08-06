@@ -1,11 +1,8 @@
-
 import { getService } from "../services/Api/getService";
 
 export const expenseIncomeData = async(what:string) => {
   let Incomes=await getService("income");
-
   let Expenses=await getService("expense");
-  console.log(Expenses.error);
 if(!(Incomes.error)||!(Expenses.error)){
   if(Incomes.error){
     Incomes=[{}];

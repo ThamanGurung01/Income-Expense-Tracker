@@ -4,7 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { removeCookie } from "../services/Authentication/cookieService";
 import closeImage from "../assets/close.png";
 import { SidebarProps } from "./components-types";
+import { useEffect, useState } from "react";
+import { getService } from "../services/Api/getService";
 const SideBar:React.FC<SidebarProps> = ({setIsHamburger}) => {
+  const [UserData,setUserData]=useState<{
+    id:String,
+    name:String,
+    email:String,
+  }>();
   const navigate=useNavigate();
   const removeTokenCookie=()=>{
     removeCookie("Token");
@@ -15,6 +22,15 @@ const SideBar:React.FC<SidebarProps> = ({setIsHamburger}) => {
   const handleHamburgerExit=()=>{
 setIsHamburger(false);
   }
+  const getUserData=async()=>{
+    const userData= await getService("userAuth");
+    console.log(userData);
+    setUserData(userData);
+  }
+  useEffect(()=>{
+  getUserData();
+  },[])
+
   return (
     <div id="sidebar-Ham" className="sidebar border 2xl:z-10 shadow-lg sidebarTransition md:relative">
       <div className="flex flex-col gap-10">
@@ -42,12 +58,11 @@ setIsHamburger(false);
       </Link>
       </div>
       </div>
-      {/* have to make a profile --- */}
 
       <div className="flex flex-col gap-4 justify-center border-t border-gray-300 w-[170px]">
         <Link to={'/profile'} className="group w-full py-4 border border-gray-100 px-2 rounded-xl transition-all duration-150 flex mt-4 gap-2 shadow-xl cursor-pointer hover:bg-gray-100 text-base text-gray-600 hover:text-black ">
           <User className="min-w-fit border border-blue-500 rounded-full group-hover:bg-blue-700 group-hover:text-white bg-blue-500 text-gray-200"/>
-          <span className="block truncate">Thaman Gurung</span></Link>
+          <span className="block truncate">{UserData?UserData.name:"User"}</span></Link>
         <button className={`border w-full bg-red-500 text-gray-200  py-2 rounded-lg hover:bg-red-600 hover:text-white`} type="button" onClick={removeTokenCookie}>LogOut</button></div>
       </div>
   )

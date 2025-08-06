@@ -4,6 +4,5 @@ const {handleGetAllUser,handleCreateUser,handleUpdateUser,handleDeleteUser,handl
 const router=express.Router();
 
 
-router.get("/",handleGetAllUser).post("/",handleCreateUser).patch("/:id",handleUpdateUser).delete("/:id",handleDeleteUser).get("/:id",handleGetUser);
-
+router.get("/",handleGetAllUser).patch("/:id",handleUpdateUser).delete("/:id",handleDeleteUser).get("/:id",handleGetUser);
 module.exports=router;

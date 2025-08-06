@@ -13,6 +13,8 @@ const expense= require("./routes/expense");
 const income=require("./routes/income");
 const user=require("./routes/user");
 const login=require("./routes/login");
+const { handleCreateUser } = require("./controller/createUser");
+const { handleGetUserAuth } = require("./controller/user");
 //imports ends
 
 
@@ -41,8 +43,8 @@ app.get("/",(req,res)=>{
 app.use("/login",login);
 app.use("/expense",verifyUser,expense);
 app.use("/income",verifyUser,income);
-app.use("/user",user);
-
-
+app.use("/user",verifyUser,user);
+app.post("/userCreate",handleCreateUser)
+app.get("/userAuth",verifyUser,handleGetUserAuth);
 
 app.listen(PORT,()=>{console.log("SERVER STARTED")});

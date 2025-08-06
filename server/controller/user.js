@@ -1,5 +1,6 @@
 const mongoose=require("mongoose");
 const User=require("../model/user");
+const jwt = require("jsonwebtoken");
 
 async function handleGetAllUser(req,res){
   try{
@@ -8,17 +9,6 @@ async function handleGetAllUser(req,res){
   return res.status(200).json(allUsers); 
   }catch(error){
     res.status(500).json({error:"Server error"});
-  }
-}
-
-async function handleCreateUser(req,res){
-  try{
-    const {name,email,password}=req.body;
-    if(!name||!email||!password) return res.status(400).json({error:"Input all fields"});
-    await User.create({name,email,password});
-  return res.status(200).json({msg:"Successfully created"});
-  }catch(error){
-    return res.status(500).json({error:"email already exists"});
   }
 }
 
@@ -68,4 +58,23 @@ async function handleGetUser(req,res){
   }
 }
 
-module.exports={handleGetAllUser,handleCreateUser,handleUpdateUser,handleDeleteUser,handleGetUser}
+async function handleGetUserAuth(req, res) {
+  try {
+    const token=req.user;
+    if (!token) {
+      return res.status(401).json({ message: "Unauthorized: No token provided" });
+    }
+    return res.status(200).json({
+      id: token.id,
+      name: token.name,
+      email: token.email,
+    });
+
+  } catch (error) {
+    console.error("Error verifying token:", error.message);
+    return res.status(401).json({ message: "Invalid or expired token" });
+  }
+}
+
+
+module.exports={handleGetAllUser,handleUpdateUser,handleDeleteUser,handleGetUser,handleGetUserAuth}

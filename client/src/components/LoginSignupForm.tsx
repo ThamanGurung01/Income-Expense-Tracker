@@ -94,7 +94,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
         name: formData.userName,
         email: formData.email,
         password: formData.password,
-      }, 'user')
+      }, 'userCreate')
 
       if (response.error) {
         showResponseMessage('', response.error)
