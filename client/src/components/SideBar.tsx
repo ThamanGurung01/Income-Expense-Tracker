@@ -18,7 +18,7 @@ setIsHamburger(false);
   return (
     <div id="sidebar-Ham" className="sidebar shadow-lg sidebarTransition md:relative">
       <img className="closeImg hover:cursor-pointer md:hidden" src={closeImage} onClick={handleHamburgerExit}/>
-      <div className="w-full border-b pb-2 border-gray-300 flex justify-evenly">
+      <div className="w-full border-b pb-4 border-gray-300 flex justify-evenly">
         <div className=" w-[30%] my-1 flex justify-center items-center bg-blue-600 text-white font-bold text-xl rounded-xl">$</div>
         <div className="flex flex-col"><span>Expense</span><span className="text-gray-700 text-base">Tracker</span></div>
       </div>
