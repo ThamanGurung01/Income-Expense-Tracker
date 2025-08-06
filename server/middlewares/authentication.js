@@ -11,7 +11,7 @@ if(token){
         console.log("error in verify");
         return res.status(403).json({ tokenError: 'Invalid token' });
       }
-      console.log("Successfull");
+      // console.log("Successfull");
       req.user=decoded;
       next();
     });

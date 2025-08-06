@@ -8,13 +8,13 @@
   font-family: serif;
 }
 .sidebar{
-  @apply flex flex-col px-5 pt-14 absolute bg-orange-400 w-36 min-h-screen text-xl gap-y-7 z-10 md:pt-44 md:gap-y-10 md:text-2xl;
+  @apply flex flex-col w-[13%] px-7 py-10 items-center bg-white absolute min-h-screen text-lg gap-y-7 z-10 md:gap-y-10 md:text-lg;
 }
 .closeImg{
   @apply w-5 self-end mb-1;
 }
 .hamburger{
-  @apply w-8 absolute top-10 left-7 ;
+  @apply w-8 absolute top-14 left-16 ;
 }
 .sidebar-option{
   @apply w-full min-h-screen p-2;
@@ -26,7 +26,7 @@
 @apply px-2 border rounded-md text-black border-black mb-5 md:mb-10 md:py-1.5 w-48 md:w-56 lg:w-64 xl:w-72;
 }
 .buttonForm{
-  @apply rounded-md bg-gray-400 text-xl text-white font-bold w-32 py-1.5 mb-6;
+  @apply rounded-md bg-gray-400 text-xl  font-bold w-32 py-1.5 mb-6;
 }
 .buttonFormHover{
   @apply hover:text-black hover:bg-gray-300;
@@ -35,7 +35,13 @@
   @apply flex flex-col items-center lg:items-baseline lg:flex-row lg:justify-evenly lg:p-0 pt-20 lg:pt-32;
 }
 .sidebarNav{
-  @apply hover:text-green-700 font-bold;
+  @apply w-full flex px-7 items-center py-2 rounded-lg gap-3;
+}
+.sidebarNavSelected{
+  @apply bg-blue-600 text-white;
+}
+.sidebarNavHover{
+  @apply hover:bg-gray-200;
 }
 .incomeExpense{
   @apply flex flex-col pt-24 items-center;

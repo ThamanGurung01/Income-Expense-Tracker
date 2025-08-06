@@ -71,7 +71,6 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
     plugins: {
       legend: {
         labels: {
-          color: "white",
           font: {
             size: 15,
           },
@@ -82,7 +81,7 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
       title: {
         display: true,
         text: "Line Chart",
-        color: "white",
+
         padding: 10,
         font: { size: 19, },
       },
@@ -93,13 +92,11 @@ const LineGraph: React.FC<LineGraphProps> = ({ lineIncomes, lineExpenses }) => {
           autoSkip: true,
           maxRotation: 0,
           minRotation: 0,
-          color: '#f3f4f6',
           font: {
             size: 15,
           }
         },
         grid:{
-color: '#f3f4f6',
         },
       },
       y: {
@@ -107,13 +104,11 @@ color: '#f3f4f6',
           autoSkip: true,
           maxRotation: 0,
           minRotation: 0,
-          color: '#f3f4f6',
           font: {
             size: 15,
           }
         },
         grid:{
-          color: '#f3f4f6',
                   },
       },
     },

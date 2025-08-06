@@ -41,7 +41,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
         ...prev,
         [field]: e.target.value
       }))
-      // Clear errors when user starts typing
       if (response.error) {
         setResponse(prev => ({ ...prev, error: '' }))
       }

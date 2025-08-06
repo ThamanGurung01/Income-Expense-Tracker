@@ -1,5 +1,5 @@
 import { Routes,Route,useLocation, Navigate } from "react-router-dom"
-
+import {Menu} from "lucide-react";
 import SideBar from "../components/SideBar" 
 import Home from "./Home" 
 import Income from "./Income" 
@@ -7,7 +7,6 @@ import Expense from "./Expense"
 import View from "./View" 
 import UpdatePage from "./UpdatePage" 
 import { getCookie } from "../services/Authentication/cookieService" 
-import hamburger from "../assets/hamburger.png";
 import { useEffect, useState } from "react"
 
 function Dashboard(){
@@ -28,8 +27,8 @@ function Dashboard(){
     setIsHamburger(true);
   }
   return (
-    <div className="flex bg-orange-500 text-gray-200">
-    <img className="hamburger md:hidden" onClick={HamburgerHandler} src={hamburger}/>
+    <div className="flex">
+    <Menu className={`hamburger md:hidden ${isHamburger?'hidden':''}`} onClick={HamburgerHandler}/>
     {(showSideBar&&isMobile)?<div className={`${isHamburger?"block":"hidden"}`}><SideBar setIsHamburger={setIsHamburger} /></div>:<SideBar setIsHamburger={setIsHamburger} />}
 <Routes>
       <Route path="/" element={Cookie?<Home/>:<Navigate to={"/login"} replace />}/>
