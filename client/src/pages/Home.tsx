@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react'
 import { expenseIncomeData } from '../utils/expenseIncomeData'
 import LineGraph from '../components/LineGraph';
 import {LayoutDashboard } from "lucide-react";
+import { TailSpin } from 'react-loader-spinner';
 const Home = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const [AllData, setAllData] = useState<Array<any>>([]);
   const [Incomes, setIncomes] = useState([]);
   const [Expenses, setExpenses] = useState([]);
@@ -10,10 +12,17 @@ const Home = () => {
   const [totalExpenses, setTotalExpenses] = useState<number>(0);
   const [totalSaving, setTotalSaving] = useState<number>(0);
   const handleData = async () => {
-    const data=await expenseIncomeData("all");
+    setLoading(true);
+  try {
+    const data = await expenseIncomeData("all");
     setAllData(data);
     setIncomes(await expenseIncomeData("income"));
     setExpenses(await expenseIncomeData("expense"));
+  } catch (err) {
+    console.error("Error fetching data:", err);
+  } finally {
+    setLoading(false);
+  }
   }
   useEffect(() => {
     handleData();
@@ -38,6 +47,14 @@ useEffect(() => {
   setTotalExpenses(expenses);
   setTotalSaving(savings);
 }, [AllData]);
+
+if (loading) {
+  return (
+    <div className="flex justify-center items-center h-screen w-full">
+      <TailSpin height="60" width="60" color="#4f46e5" />
+    </div>
+  );
+}
   return (
     <div className='sidebar-option'>
       <div className='flex flex-col'>

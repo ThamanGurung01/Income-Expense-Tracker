@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { cookieService, getCookie } from '../services/Authentication/cookieService';
 import { getService } from '../services/Api/getService';
 import { patchService } from '../services/Api/patchService';
+import { TailSpin } from 'react-loader-spinner';
 
 interface ProfileData {
   id: string;
@@ -12,6 +13,7 @@ interface ProfileData {
 }
 
 const Profile: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
   const [profileData, setProfileData] = useState<ProfileData>({
     id:'',
@@ -43,12 +45,15 @@ const Profile: React.FC = () => {
   }, [navigate]);
 
   const fetchProfileData = async () => {
+    setLoading(true);
     try {
       const userData= await getService("userAuth");
       setProfileData(userData);
     } catch (error) {
       console.error('Error fetching profile:', error);
       setMessage({ msg: "", error: "Failed to load profile data" });
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -130,6 +135,13 @@ const Profile: React.FC = () => {
     }
   };
 
+if (loading) {
+  return (
+    <div className="flex justify-center items-center h-screen w-full">
+      <TailSpin height="60" width="60" color="#4f46e5" />
+    </div>
+  );
+}
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
