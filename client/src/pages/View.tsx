@@ -11,7 +11,6 @@ const View:React.FC = () => {
       </div>
       <div>
       <ViewTable value="expense"/>
-        
       </div>
     </div>
   )

@@ -26,9 +26,9 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
   return (
     <div className=''>
       <legend className='text-center mt-5 pb-5 text-2xl font-bold underline'>{value.toUpperCase()}</legend>
-      <table className='table-auto tableStyle border-collapse border border-red-600'>
+      <table className='w-full table-auto tableStyle border-collapse border border-red-600'>
     <thead>
-<tr>
+<tr className='px-10'>
 <th className='tableElementBorder tableStyleRow'>Amount</th>
       <th className='tableElementBorder tableStyleRow'>Category</th>
       <th className='tableElementBorder tableStyleRow'>Date</th>
@@ -36,13 +36,12 @@ const ViewTable:React.FC<viewTableProps> = ({value}) => {
     </thead>
     <tbody>
 {
-(viewData.length!==0)?(viewData.map((el,i)=>(<tr className='tableRow' onClick={()=>{handleUpdate(el["_id"],value)}} key={i}>
-<td className='tableElementBorder tableStyleRow' title={el[value+"_description"]}>{el[value+"_amount"]}</td>
-<td className='tableElementBorder tableStyleRow' title={el[value+"_description"]}>{el[value+"_category"]}</td>
-<td className='tableElementBorder tableStyleRow' title={el[value+"_description"]}>{el[value+"_date"]}</td>
-</tr>)
- )
- ):( <tr><td className='tableElementBorder text-center' colSpan={4}>No data found</td></tr> )
+(viewData.length!==0)?(viewData.map((el,i)=>(<tr className='tableRow bg-white hover:bg-indigo-50 cursor-pointer transition-colors duration-200' onClick={()=>{handleUpdate(el["_id"],value)}} key={i}>
+  <td className='tableElementBorder tableStyleRow text-left' title={el[value+"_description"]}>{el[value+"_amount"]}</td>
+  <td className='tableElementBorder tableStyleRow text-left' title={el[value+"_description"]}>{el[value+"_category"]}</td>
+  <td className='tableElementBorder tableStyleRow text-left' title={el[value+"_description"]}>{el[value+"_date"]}</td>
+</tr>))
+):( <tr><td className='tableElementBorder text-center' colSpan={4}>No data found</td></tr> )
  }
     </tbody>
   </table>

@@ -32,7 +32,7 @@
   @apply hover:text-black hover:bg-gray-300;
 }
 .view{
-  @apply flex flex-col items-center lg:items-baseline lg:flex-row lg:justify-evenly lg:p-0 pt-20 lg:pt-32;
+  @apply flex flex-col items-center lg:items-baseline lg:flex-row lg:justify-evenly pt-20 lg:pt-20;
 }
 .sidebarNav{
   @apply w-full flex px-10 md:px-8 2xl:px-8 items-center py-2 rounded-lg gap-3 ;
@@ -47,16 +47,13 @@
   @apply border border-gray-200;
 }
 .tableStyle{
-  @apply text-center sm:text-lg md:text-xl lg:text-2xl;
+  @apply text-center text-lg;
 }
 .tableStyleRow{
  @apply px-1 sm:px-2;
 }
 .tableRow{
-  @apply hover:bg-green-800 hover:text-white;
-}
-.update{
-  @apply flex flex-col pt-24 items-center;
+  @apply hover:bg-green-800;
 }
 .updateButtonForm{
   @apply rounded-md bg-red-500 text-xl text-white font-bold w-28 lg:w-24 py-1;
@@ -64,9 +61,6 @@
 .updateButtonFormHover{
   @apply hover:text-white hover:bg-red-600;
 }
-
-
-
 table th{
   @apply bg-gray-800 text-white;
 }

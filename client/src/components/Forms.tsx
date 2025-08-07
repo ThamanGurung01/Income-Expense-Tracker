@@ -5,7 +5,7 @@ import {getSpecificService} from "../services/Api/getSpecificService"
 import { patchService } from '../services/Api/patchService';
 import { useNavigate } from 'react-router-dom';
 import { deleteService } from '../services/Api/deleteService';
-import { Banknote, TrendingDown } from 'lucide-react';
+import { Banknote, RefreshCcw, TrendingDown } from 'lucide-react';
 const Forms:React.FC<FormProps> = ({value,method,id}) => {
   const navigate=useNavigate();
   const [amount,setAmount]=useState<Number>(1000);
@@ -152,10 +152,10 @@ const handleDelete = async() => {
   return (
     <div className='w-full sm:w-4/5 md:w-3/4 lg:w-2/5 mx-auto flex flex-col text-lg gap-4 bg-white p-6 rounded-lg shadow-md mt-10' id="form">  
       <h1 className="flex items-center gap-4 text-2xl font-semibold text-gray-800">
-      <div className={`p-2 rounded-full ${value === "income" ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-        {value === "income" ? <Banknote className="w-6 h-6" /> : <TrendingDown className="w-6 h-6" />}
+      <div className={`p-2 rounded-full ${(value === "income"&&method==="POST") ? 'bg-green-100 text-green-700' :value==="expense"? 'bg-red-100 text-red-700':'bg-red-100 text-yellow-700'}`}>
+        {(value === "income"&&method==="POST") ? <Banknote className="w-6 h-6" /> :value==="expense"? <TrendingDown className="w-6 h-6" />:<RefreshCcw/>}
       </div>
-      <span>{value === "income" ? 'Add Incomes' : 'Add Expenses'}</span>
+      <span>{(value === "income"&&method==="POST") ? 'Add Incomes' :value==="expense"? 'Add Expenses':'Update Transactions'}</span>
        </h1>
       {message.error?(<span className='text-red-600 font-semibold'>{message.error.toUpperCase()}!</span>):""}
       {message.msg?(<span className='text-green-600 font-semibold'>{message.msg.toUpperCase()}</span>):""}
