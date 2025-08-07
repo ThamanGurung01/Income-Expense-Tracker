@@ -1,4 +1,4 @@
-import {ArrowLeftRight, BanknoteArrowDown, BanknoteArrowUp, House, Menu, User} from "lucide-react"
+import {ArrowLeftRight, BanknoteArrowDown, BanknoteArrowUp, House, User} from "lucide-react"
 import {Link, useLocation} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { removeCookie } from "../services/Authentication/cookieService";
