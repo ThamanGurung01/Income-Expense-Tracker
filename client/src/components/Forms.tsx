@@ -5,6 +5,7 @@ import {getSpecificService} from "../services/Api/getSpecificService"
 import { patchService } from '../services/Api/patchService';
 import { useNavigate } from 'react-router-dom';
 import { deleteService } from '../services/Api/deleteService';
+import { Banknote, TrendingDown } from 'lucide-react';
 const Forms:React.FC<FormProps> = ({value,method,id}) => {
   const navigate=useNavigate();
   const [amount,setAmount]=useState<Number>(1000);
@@ -149,11 +150,17 @@ const handleDelete = async() => {
   }
 };
   return (
-    <div className='w-64 flex flex-col text-xl placeholder:text-xl' id="form">
-      {message.error?(<span className='text-rose-700 font-bold'>{message.error.toUpperCase()}!</span>):""}
-      {message.msg?(<span className='text-green-400 text-lg font-bold'>{message.msg.toUpperCase()}</span>):""}
-      <input type="number" className='incomeExpenseForm' name={`${value}_amount`} min={1} onChange={handleAmount} value={amount?.toString()} required/><br />
-      <select className='incomeExpenseForm' name={`${value}_category`} value={category} onChange={handleCategory} required>
+    <div className='w-full sm:w-4/5 md:w-3/4 lg:w-2/5 mx-auto flex flex-col text-lg gap-4 bg-white p-6 rounded-lg shadow-md mt-10' id="form">  
+      <h1 className="flex items-center gap-4 text-2xl font-semibold text-gray-800">
+      <div className={`p-2 rounded-full ${value === "income" ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+        {value === "income" ? <Banknote className="w-6 h-6" /> : <TrendingDown className="w-6 h-6" />}
+      </div>
+      <span>{value === "income" ? 'Add Incomes' : 'Add Expenses'}</span>
+       </h1>
+      {message.error?(<span className='text-red-600 font-semibold'>{message.error.toUpperCase()}!</span>):""}
+      {message.msg?(<span className='text-green-600 font-semibold'>{message.msg.toUpperCase()}</span>):""}
+      <input type="number" name={`${value}_amount`} min={1} onChange={handleAmount} value={amount?.toString()} required className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/><br />
+      <select name={`${value}_category`} value={category} onChange={handleCategory} required className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
       {value==="expense"?(<>
       <option value="Rent">Rent</option>
       <option value="Utilities">Utilities</option>
@@ -183,12 +190,12 @@ const handleDelete = async() => {
           </>
           )}
       </select><br />
-      <textarea className='incomeExpenseForm' placeholder='Description' name={`${value}_description`} onChange={handleDescription} value={descriptions}></textarea><br />
-      <input type="date" className='incomeExpenseForm' name={`${value}_date`}
-      onChange={handleDate} value={date} required/>
+      <textarea placeholder='Description' name={`${value}_description`} onChange={handleDescription} value={descriptions} className="px-4 py-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea><br />
+      <input type="date" name={`${value}_date`}
+      onChange={handleDate} value={date} required className="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"/>
       
-      <button onClick={handleSubmit} className="buttonForm buttonFormHover mt-8 ml-14 sm:ml-16" type='submit'>{method=="PATCH"?"Update":"Submit"}</button>
-      {method=="PATCH"?<button className='updateButtonForm updateButtonFormHover ml-16 sm:ml-20' onClick={handleDelete}>Delete</button>:""} 
+      <button onClick={handleSubmit} className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 mt-6 rounded-md transition-all duration-200 ease-in-out" type='submit'>{method=="PATCH"?"Update":"Submit"}</button>
+      {method=="PATCH"?<button className='bg-red-500 hover:bg-red-600 text-white font-semibold px-6 py-2 mt-2 rounded-md transition-all duration-200 ease-in-out' onClick={handleDelete}>Delete</button>:""} 
    
     </div>
   )

@@ -43,12 +43,6 @@
 .sidebarNavHover{
   @apply hover:bg-gray-200;
 }
-.incomeExpense{
-  @apply flex flex-col pt-24 items-center;
-}
-.incomeExpenseForm{
-  @apply py-1.5 px-2 text-black placeholder:text-gray-400 text-lg rounded-lg;
-}
 .tableElementBorder{
   @apply border border-gray-200;
 }

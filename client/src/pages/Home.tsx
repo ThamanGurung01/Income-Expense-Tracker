@@ -10,13 +10,14 @@ const Home = () => {
   const [totalExpenses, setTotalExpenses] = useState<number>(0);
   const [totalSaving, setTotalSaving] = useState<number>(0);
   const handleData = async () => {
-    setAllData(await expenseIncomeData("all"));
+    const data=await expenseIncomeData("all");
+    console.log(data);
+    setAllData(data);
     setIncomes(await expenseIncomeData("income"));
     setExpenses(await expenseIncomeData("expense"));
   }
   useEffect(() => {
     handleData();
-    console.log(AllData);
   }, []);
 
 useEffect(() => {
@@ -61,14 +62,14 @@ useEffect(() => {
         <div className='flex-grow'>
           <LineGraph key={Incomes.length + Expenses.length} lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
- <div className="bg-white mx-auto rounded-xl shadow-sm border border-gray-200 overflow-hidden w-1/2 mt-10">
+ <div className="bg-white mx-auto rounded-xl shadow-sm border border-gray-200 overflow-hidden md:w-1/2 mt-10">
  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-200">
    <h3 className="text-lg font-semibold text-gray-800 text-center">Recent Transactions</h3>
  </div>
- <div className="overflow-x-auto">
-   <table className="w-full">
-     <thead>
-       <tr className="bg-gray-50 border-b border-gray-200">
+  <div className="max-h-[9.2rem] overflow-y-auto overflow-x-auto">
+   <table className="min-w-full">
+    <thead className="sticky top-0 bg-white z-10">
+      <tr className="bg-gray-50 border-b border-gray-200">
          <th className="px-6 py-3 text-left text-sm font-medium text-gray-100 uppercase tracking-wider">Category</th>
          <th className="px-6 py-3 text-left text-sm font-medium text-gray-100 uppercase tracking-wider">Amount</th>
          <th className="px-6 py-3 text-left text-sm font-medium text-gray-100 uppercase tracking-wider">Date</th>
@@ -79,8 +80,6 @@ useEffect(() => {
          AllData.length !== 0 ? (
            AllData.map((el, i) => {
              return (
-               (i < 3) ? (
-                 (el.income_category) ? (
                    <tr key={i} className="bg-gray-50 transition-colors duration-200">
                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                        <div className="flex items-center">
@@ -95,8 +94,6 @@ useEffect(() => {
                        {el.income_date ? el.income_date : el.expense_date}
                      </td>
                    </tr>
-                 ) : ""
-               ) : ""
              );
            })
          ) : (
