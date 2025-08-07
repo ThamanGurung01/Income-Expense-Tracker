@@ -8,7 +8,7 @@
   font-family: serif;
 }
 .sidebar{
-  @apply flex flex-col w-[200px] pt-10 pb-5 justify-between items-center bg-white absolute min-h-screen text-lg z-10 md:text-lg;
+  @apply flex flex-col w-[200px] pt-5 pb-5 justify-between items-center bg-white absolute min-h-screen text-lg z-10 md:text-lg;
 }
 .closeImg{
   @apply w-5 self-center mb-1;

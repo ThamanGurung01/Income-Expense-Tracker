@@ -24,7 +24,6 @@ setIsHamburger(false);
   }
   const getUserData=async()=>{
     const userData= await getService("userAuth");
-    console.log(userData);
     setUserData(userData);
   }
   useEffect(()=>{

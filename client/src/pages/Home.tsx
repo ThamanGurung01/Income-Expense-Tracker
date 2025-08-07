@@ -11,7 +11,6 @@ const Home = () => {
   const [totalSaving, setTotalSaving] = useState<number>(0);
   const handleData = async () => {
     const data=await expenseIncomeData("all");
-    console.log(data);
     setAllData(data);
     setIncomes(await expenseIncomeData("income"));
     setExpenses(await expenseIncomeData("expense"));

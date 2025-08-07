@@ -12,19 +12,38 @@ async function handleGetAllUser(req,res){
   }
 }
 
-async function handleUpdateUser(req,res){
-  try{
-    const id=req.params.id;
-    if(!id) res.status(400).json({error:"No id"});
-    const {name,email,password}=req.body;
-    if(!name||!email||!password) return res.status(400).json({error:"Input all fields"});
-      await User.findByIdAndUpdate(id,{name,email,password});
-      return res.status(200).json({msg:"Successfully updated"});
-  }catch(error){
-    if (error instanceof mongoose.CastError) {
-      return res.status(400).send({ error: 'Invalid ID format' });
+async function handleUpdateUser(req, res) {
+  try {
+    const id = req.params.id;
+    if (!id) return res.status(400).json({ error: "No id" });
+
+    const { name, password } = req.body;
+
+    const updateFields = {};
+    if (name) updateFields.name = name;
+    if (password) updateFields.password = password;
+
+    if (Object.keys(updateFields).length === 0) {
+      return res.status(400).json({ error: "No fields to update" });
     }
-    return res.status(500).json({error:"Server error"});
+    await User.findByIdAndUpdate(id, updateFields);
+
+    const updatedUser = await User.findById(id);
+    const payload = {
+      id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+    };
+    const secretKey = process.env.secret_key;
+    const newToken = jwt.sign(payload, secretKey);
+
+    return res.status(200).json({ msg: "Successfully updated", token: newToken });
+  } catch (error) {
+    if (error instanceof mongoose.CastError) {
+      return res.status(400).send({ error: "Invalid ID format" });
+    }
+    console.error(error);
+    return res.status(500).json({ error: "Server error" });
   }
 }
 
