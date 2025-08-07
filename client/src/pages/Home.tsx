@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { expenseIncomeData } from '../utils/expenseIncomeData'
 import LineGraph from '../components/LineGraph';
-
+import {LayoutDashboard } from "lucide-react";
 const Home = () => {
   const [AllData, setAllData] = useState<Array<any>>([]);
   const [Incomes, setIncomes] = useState([]);
@@ -41,46 +41,81 @@ useEffect(() => {
   return (
     <div className='sidebar-option'>
       <div className='flex flex-col'>
-        <h1 className='text-2xl text-center font-bold mt-8 md:text-4xl md:mt-10' >Dashboard</h1>
-        <div className=' flex mt-4 flex-col items-center md:text-xl lg:text-2xl md:mt-7 md:flex-row md:justify-center gap-x-10 md:gap-x-20'>
-          <span><span className='font-semibold'> Incomes:</span> <span>{totalIncomes}</span></span>
-          <span><span className='font-semibold'> Expenses:</span> <span>{totalExpenses}</span></span>
-          <span><span className='font-semibold'> Savings:</span> <span>{totalSaving}</span></span>
+        <h1 className='text-2xl text-center font-bold mt-8 md:text-4xl md:mt-14 flex items-center justify-center gap-5'><LayoutDashboard/><span>Dashboard</span></h1>
+        <div className="bg-white w-full rounded-xl shadow-sm border border-gray-100 p-6 mt-4 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="flex flex-col items-center p-4 bg-green-50 rounded-lg border border-green-200">
+            <span className="text-sm font-medium text-green-700 mb-1">Incomes</span>
+            <span className="text-xl md:text-2xl font-bold text-green-800">${totalIncomes}</span>
+          </div>
+          <div className="flex flex-col items-center p-4 bg-red-50 rounded-lg border border-red-200">
+            <span className="text-sm font-medium text-red-700 mb-1">Expenses</span>
+            <span className="text-xl md:text-2xl font-bold text-red-800">${totalExpenses}</span>
+          </div>
+          <div className="flex flex-col items-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <span className="text-sm font-medium text-blue-700 mb-1">Savings</span>
+            <span className="text-xl md:text-2xl font-bold text-blue-800">${totalSaving}</span>
+          </div>
+        </div>
         </div>
         <div className='flex-grow'>
           <LineGraph key={Incomes.length + Expenses.length} lineIncomes={Incomes} lineExpenses={Expenses} />
         </div>
-        <div className='flex w-full flex-col items-center text-xl mt-10'>
-          <h3 className='font-bold mb-2'>Recently Added</h3>
-          <table className='table-auto tableStyle border-collapse border border-red-600'>
-            <thead>
-            <tr>
-              <th className='tableElementBorder tableStyleRow'>Category</th>
-              <th className='tableElementBorder tableStyleRow'>Amount</th>
-              <th className='tableElementBorder tableStyleRow'>Date</th>
-            </tr>
-            </thead>
-            <tbody>
-            {
-              AllData.length!==0?
-              (AllData.map((el, i) => {
-                return (
-                  (i < 3) ? (
-                    (el.income_category)?
-                    (<tr key={i}>
-                      <td className='tableElementBorder tableStyleRow'>{el.income_category ? el.income_category : el.expense_category}</td>
-                      <td className='tableElementBorder tableStyleRow'>{el.income_amount ? el.income_amount : el.expense_amount}</td>
-                      <td className='tableElementBorder tableStyleRow'>{el.income_date ? el.income_date : el.expense_date}</td>
-                    </tr>):""
-                    ):""
-                );
-              })):
-            ( <tr><td className='tableElementBorder text-center' colSpan={4}>No data found</td></tr> )
-            }
-            </tbody>
-          </table>
-
-        </div>
+ <div className="bg-white mx-auto rounded-xl shadow-sm border border-gray-200 overflow-hidden w-1/2 mt-10">
+ <div className="bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-200">
+   <h3 className="text-lg font-semibold text-gray-800 text-center">Recent Transactions</h3>
+ </div>
+ <div className="overflow-x-auto">
+   <table className="w-full">
+     <thead>
+       <tr className="bg-gray-50 border-b border-gray-200">
+         <th className="px-6 py-3 text-left text-sm font-medium text-gray-100 uppercase tracking-wider">Category</th>
+         <th className="px-6 py-3 text-left text-sm font-medium text-gray-100 uppercase tracking-wider">Amount</th>
+         <th className="px-6 py-3 text-left text-sm font-medium text-gray-100 uppercase tracking-wider">Date</th>
+       </tr>
+     </thead>
+     <tbody className="bg-white divide-y divide-gray-200">
+       {
+         AllData.length !== 0 ? (
+           AllData.map((el, i) => {
+             return (
+               (i < 3) ? (
+                 (el.income_category) ? (
+                   <tr key={i} className="bg-gray-50 transition-colors duration-200">
+                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                       <div className="flex items-center">
+                         <div className={`w-2 h-2 rounded-full mr-3 ${el.income_category ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                         {el.income_category ? el.income_category : el.expense_category}
+                       </div>
+                     </td>
+                     <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${el.income_category ? 'text-green-600' : 'text-red-600'}`}>
+                       {el.income_category ? '+' : '-'}{el.income_amount ? el.income_amount : el.expense_amount}
+                     </td>
+                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                       {el.income_date ? el.income_date : el.expense_date}
+                     </td>
+                   </tr>
+                 ) : ""
+               ) : ""
+             );
+           })
+         ) : (
+           <tr>
+             <td className="px-6 py-8 text-center text-gray-500" colSpan={3}>
+               <div className="flex flex-col items-center">
+                 <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mb-2">
+                   <span className="text-gray-400 text-xl">📊</span>
+                 </div>
+                 <span className="text-sm">No transactions found</span>
+               </div>
+             </td>
+           </tr>
+         )
+       }
+     </tbody>
+   </table>
+ </div>
+</div>
 
       </div>
     </div>
