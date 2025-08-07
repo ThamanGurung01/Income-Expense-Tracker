@@ -150,7 +150,7 @@ const handleDelete = async() => {
   }
 };
   return (
-    <div className='w-full sm:w-4/5 md:w-3/4 lg:w-2/5 mx-auto flex flex-col text-lg gap-4 bg-white p-6 rounded-lg shadow-md mt-10' id="form">  
+    <div className='w-full sm:w-4/5 md:w-3/4 lg:w-2/5 mx-auto flex flex-col text-lg gap-4 bg-white p-6 rounded-lg shadow-md mt-16' id="form">  
       <h1 className="flex items-center gap-4 text-2xl font-semibold text-gray-800">
       <div className={`p-2 rounded-full ${(value === "income"&&method==="POST") ? 'bg-green-100 text-green-700' :value==="expense"? 'bg-red-100 text-red-700':'bg-red-100 text-yellow-700'}`}>
         {(value === "income"&&method==="POST") ? <Banknote className="w-6 h-6" /> :value==="expense"? <TrendingDown className="w-6 h-6" />:<RefreshCcw/>}

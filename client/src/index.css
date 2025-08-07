@@ -8,13 +8,13 @@
   font-family: serif;
 }
 .sidebar{
-  @apply flex flex-col w-[200px] pt-5 pb-5 justify-between items-center bg-white absolute min-h-screen text-lg z-10 md:text-lg;
+  @apply flex flex-col w-[200px] pt-5 pb-5 justify-between items-center bg-white absolute min-h-screen text-lg z-50 md:text-lg;
 }
 .closeImg{
   @apply w-5 self-center mb-1;
 }
 .hamburger{
-  @apply w-8 absolute top-14 left-16 ;
+  @apply w-8 absolute top-11 left-16 ;
 }
 .sidebar-option{
   @apply w-full min-h-screen p-2;
