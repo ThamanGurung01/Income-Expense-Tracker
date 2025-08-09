@@ -260,7 +260,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
                     )}
                   </button>
                 </div>
-                {!isSignup && (
+                {/* {!isSignup && (
                   <div className="mt-2 text-right">
                     <button
                       type="button"
@@ -270,7 +270,7 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
                       Forgot password?
                     </button>
                   </div>
-                )}
+                )} */}
               </div>
             </div>
 
@@ -307,10 +307,6 @@ const LoginSignupForm: React.FC<LoginSignupFormProps> = ({ formType }) => {
               </span>
             </div>
           </div>
-        </div>
-        
-        <div className="text-center text-xs text-gray-500">
-          <p>By continuing, you agree to our Terms of Service and Privacy Policy</p>
         </div>
       </div>
     </div>
